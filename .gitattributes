@@ -1,0 +1,8 @@
+* text=auto
+# code
+*.ts text eol=lf
+# other text
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+template/*.block text eol=lf

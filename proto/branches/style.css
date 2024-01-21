@@ -1,0 +1,46 @@
+body {
+  padding-left: 2rem;
+  padding-top: 0.75rem;
+}
+
+.overseer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* ### DEVELOPER ### */
+
+.developer {
+  color: #222;
+  font-family: "Nimbus Sans L", sans-serif;
+  font-kerning: none;
+  font-size: 2rem;
+}
+
+.developer::first-letter {
+  color: #F72;
+  font-size: 3rem;
+}
+
+.developer:hover {
+  color: #F72;
+}
+
+/* ### BRANCH ### */
+
+.branch {
+  color: #444;
+  font-kerning: none;
+  font-size: 1.25rem;
+  padding-left: 1.75rem;
+}
+
+.branch::after {
+  color: #666;
+  content: " Branch";
+  font-size: 0.5rem;
+}
+
+.branch:hover {
+  color: #27F;
+}

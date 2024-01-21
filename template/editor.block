@@ -1,0 +1,8 @@
+<div class="editor">
+  <h3>${editor_name}</h3>
+  <!-- File Format(s) -->
+  <div class=game>${games}</div>
+  <div class=platform>${platforms}</div>
+  <!-- Install Link(s) -->
+  <!-- Guides / Docs -->
+</div>

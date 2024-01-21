@@ -1,0 +1,9 @@
+# need a trigger, but from the main bsp_tool repo?
+# or we lock docs updates to releases & tag around the same time
+
+# install npm
+# -- typescript
+
+# python3.X
+# -- sqlite3: databases
+# -- bsp_tool: branch coverage, etc.
