@@ -1,0 +1,6 @@
+ - [ ] Automated TypeScript checks
+   - [ ] lint: ???
+   - [ ] test: ???
+ - [ ] Automated Python checks
+   - [ ] lint: `flake8`
+   - [ ] test: `pytest`
