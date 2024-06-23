@@ -82,7 +82,7 @@
 .game > * {
   align-items: center;
   display: flex;
-  overflow: scroll;
+  overflow: clip;
   padding-left: 0.5rem;
   white-space: nowrap;
 }
