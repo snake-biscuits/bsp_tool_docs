@@ -102,11 +102,17 @@
 /* id_software */
 .branch-quake  { background-color: #D84; }
 .branch-quake2 { background-color: #4A6; }
+.branch-quake3 { background-color: #B00; }
 .branch-quake64  { background-color: #E71; }
 .branch-remake-quake  { background-color: #940; }
+/* ion_storm */
+.branch-daikatana { background-color: #B10; }
 /* raven */
 .branch-hexen2 { background-color: #A00; }
+.branch-soldier-of-fortune { background-color: #571; }
+.branch-soldier-of-fortune2 { background-color: #457; }
 /* ritual */
+.branch-fakk2 { background-color: #52E; }
 .branch-sin { background-color: #165; }
 /* valve */
 .branch-goldsrc { background-color: #F91; }
