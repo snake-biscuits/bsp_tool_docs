@@ -1,34 +1,35 @@
 # bsp_tool
 
-> what is this for?
-> why might I want to use it?
-> how do I use it?
-> where do I start?
+```embed
+url: https://github.com/snake-biscuits/bsp_tool
+```
 
-
-## Research
-
-> .bsp file analysis
-> reverse-engineering
-> how to contribute
-
-
-## Development
-
-> what can I create with this?
-> -- models, renders & animations
-> -- ports & decompiles
+## Starting Points
+ * [Install Guide](installing.md)
+ * for Beginners: [`.bsp` Basics](guides/bsp_basics.md)
+ * for Historians: [Quake Engine](engines/quake.md)
+ * for Users: [Testing a Hypothesis](use_cases/hypothesis.md)
 
 
 ## Fair Use Disclaimer
+**Please do not use `bsp_tool` to copy or steal another creator's work**  
+The primary goal of `bsp_tool` is to extend community mapping tools  
 
-> don't use this to steal other people's work!!!
-> decompiling is invasive & disrepects the map maker's privacy!
 
+### Always
+  - **Ask** the creator's permission before touching their work  
+  - **Understand** that by default creator's works are under copyright  
+    - [US Law Copyright FAQ](https://www.copyright.gov/help/faq/faq-general.html#mywork)
+    - [US Copyright Duration](https://www.copyright.gov/help/faq/faq-duration.html)
+      - [Circular 15a](https://www.copyright.gov/circs/circ15a.pdf)  
+  - **Contact** the original creator to get their permission  
+    - This can get complicated  
+    - Some creators don't hold the copyright on their works  
+      - often because of Company / Publisher contracts  
+  - **Credit** the original creator; once you have permission to share a derivative work  
+  - **Support** the official release
 
-## Starting Points
+**DO NOT** use this tool to steal another creator's work  
+**DO** use this tool to understand the `.bsp` format(s) and create more specific tools
 
-> link to some helpful starting points in the docs
-> for Historians: `branches/id_software/quake`
-> for Beginners: "What's a .bsp file?" -> "What are Lumps?" -> "Lump Systems"
-> for Power Users: "Hypothesis Testing" (exploring patterns in data)
+> Be aware that this gets even more complicated with commercial projects

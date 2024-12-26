@@ -2,33 +2,46 @@
 
 > NOTE: **PLACEHOLDER**
 
+
+
 ## Games
+
 | Release Date | Region | Platform | Title |
 | :----------- | :----- | :------- | :---- |
 | 1996-06-22   | NA     | MS-DOS   | Quake |
 
 
+
 ## Tools
 ### Asset Extractors
- * [pakextract]()
+ 
+ * [pakextract](https://github.com/yquake2/pakextract)
+
 
 ### Editors
- * [TrenchBroom]()
+
+ * [TrenchBroom](https://github.com/TrenchBroom/TrenchBroom)
+
 
 ### Compilers
- * [ericw-tools]()
+
+ * [ericw-tools](https://github.com/ericwa/ericw-tools)
 
 
 
 ## Archives
+
 | Extension | `bsp_tool` ArchiveClass        |
 | :-------- | :----------------------------- |
-| `.pak`    | [`archives.id_software.Pak`]() |
+| `.pak`    | [`archives.id_software.Pak`](../../archives/id_software/pak.md) |
+ 
 
 
 ## Coverage
 
 > TODO: branch coverage w/ %age per-game
+
+
 
 ## LumpClasses
 

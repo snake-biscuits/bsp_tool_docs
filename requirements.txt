@@ -1,2 +1,4 @@
 bsp_tool @ git+https://github.com/snake-biscuits/bsp_tool.git
 mkdocs
+mkdocs-material
+mkdocs-link-embeds-plugin
