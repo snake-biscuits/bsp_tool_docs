@@ -1,8 +1,12 @@
-# Pak
+# `id_software.Pak`
 
-ArchiveClass for `.pak` files
+[ArchiveClass](../../concepts/archive_classes.md) for `.pak` files
+
 Uncompressed blob of data, not unlike a `.wad`
+
 Likely all clumped together so as to improve load times
 
 
-> TODO: link to ArchiveClass code definition
+```embed
+url: https://github.com/snake-biscuits/bsp_tool/blob/master/bsp_tool/archives/id_software.py#L35
+```

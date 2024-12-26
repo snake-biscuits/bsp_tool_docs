@@ -11,6 +11,8 @@ theme:
     - navigation.top
     - navigation.tracking
   icon:
+    logo: material/tools
+    # TODO: favicon
     repo: fontawesome/brands/github
 
 plugins:
@@ -21,14 +23,18 @@ extra_css:
   - stylesheets/extra.css
 
 markdown_extensions:
+  - attr_list
   - def_list
   - footnotes
+  - md_in_html
   - pymdownx.highlight:
       use_pygments: true
   - pymdownx.inlinehilite
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+  # NOTE: mermaid is available, but still unwieldy
+  # -- could use "erDiagram" for lump systems though
+  #   - pymdownx.superfences:
+  #       custom_fences:
+  #         - name: mermaid
+  #           class: mermaid
+  #           format: !!python/name:pymdownx.superfences.fence_code_format
 

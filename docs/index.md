@@ -5,10 +5,13 @@ url: https://github.com/snake-biscuits/bsp_tool
 ```
 
 ## Starting Points
+<div class="grid cards" markdown>
  * [Install Guide](installing.md)
- * for Beginners: [`.bsp` Basics](guides/bsp_basics.md)
- * for Historians: [Quake Engine](engines/quake.md)
- * for Users: [Testing a Hypothesis](use_cases/hypothesis.md)
+ * [`.bsp` Basics](guides/bsp_basics.md)
+ * [BspClasses](concepts/bsp_classes.md)
+ * [Quake Engine](engines/quake.md)
+<!-- * [Testing a Hypothesis](use_cases/hypothesis.md) -->
+</div>
 
 
 ## Fair Use Disclaimer
