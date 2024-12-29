@@ -25,11 +25,68 @@ if __name__ == "__main__":
         WHERE E.name == '{engine}'
         """).fetchall()
 
-    mermaid_lines = [
-        "```mermaid",
-        # NOTE: would do markdown links but it breaks
-        # -- developer.branch["`[developer.branch](../branches/developer/branch.md)`"]
-        *["{}.{} --> {}.{}".format(*fork) for fork in forks],
-        "```"]
+    nodes = {
+        (base_dev, base_branch): (0, 0)
+        for base_dev, base_branch, fork_dev, fork_branch in forks}
+    # TODO: place each branch in 2d space
+    # -- chronological flow from left to right
+    # -- need to know which branch is first (can't be a fork)
 
-    print("\n".join(mermaid_lines))
+    # NOTE: chronological markers across the top would be neat
+    # -- would require looking up releases
+    # -- scripts = ["branch", "game", "release"]
+    # -- chronology = db.execute("""
+    # --     SELECT X.branch_name
+    # --     FROM (
+    # --         SELECT
+    # --             MIN(R.day)                  AS release_day,
+    # --             CONCAT(D.name, '.', B.name) AS branch_name
+    # --         FROM       ReleaseBranch AS RB
+    # --         INNER JOIN Release       AS  R ON R.rowid == RB.release
+    # --         INNER JOIN Branch        AS  B ON B.rowid == RB.branch
+    # --         INNER JOIN Developer     AS  D ON D.rowid == B.developer
+    # --         INNER JOIN Engine        AS  E ON E.rowid == B.engine
+    # --         WHERE E.name == 'Source'
+    # --         AND R.day LIKE '%-%-%'
+    # --         GROUP BY branch_name
+    # --     ) AS X
+    # --     ORDER BY X.release_day ASC
+    # --     """).fetchall()
+
+    styles = db.execute(f"""
+        SELECT CONCAT('.', B.name, ' { background-color: #', B.colour, '; }')
+        FROM Branch AS B
+        INNER JOIN Engine AS E ON B.engine == E.rowid
+        WHERE E.name == '{engine}'
+        """).fetchall()
+    styles = [x[0].replace("_", "-") for x in styles]
+
+    site = "https://snake-biscuits.github.io/bsp_tool_docs"
+
+    svg_lines = [
+        "<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>",
+        "  <style>",
+        "    .branch {",
+        "      border-radius: 0.5rem;",
+        "      color: #EEE;",
+        "      display: inline-block;",
+        "      outline: 1px solid #EEE;",
+        "      overflow: auto;",
+        "      padding-left: 0.5rem;",
+        "      padding-right: 0.5rem;",
+        "    }",
+        "    a:visited { color: #E1E; }",
+        *[f"    {style}" for style in styles],
+        "  </style>",
+        # TODO: <path>s connecting the branch nodes
+        *[
+            "  " + "\n  ".join([
+                f"<foreignObject x='{x}' y='{y}' width='96' height='32'>",
+                f"  <div class='branch {branch}' xmlns='http://www.w3.org/1999/xhtml'>",
+                f"    <a href='{site}/branches/{dev}/{branch}/'>{dev}.{branch}</a>",
+                "  </div>",
+                "</foreignObject>"])
+            for (dev, branch), (x, y) in nodes.items()],
+        "</svg>"]
+
+    print("\n").join(svg_lines)
