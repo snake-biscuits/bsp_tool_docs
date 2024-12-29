@@ -1,65 +1,65 @@
 # ArchiveClasses
 
-`ArchiveClasses` are based on `bsp_tool.archives.Archive`
+`#!py ArchiveClasses` are subclasses of `#!py bsp_tool.archives.Archive`
 
 They provide a means of navigating the filesystem inside an Archive
 (inspecting folders & reading files)
 
-Originally built to mimic `zipfile.ZipFile`
+Originally built to mimic `#!py zipfile.ZipFile`
 
-Extended with some utilities inspired by the `os.path` & `fnmatch` modules
+Extended with some utilities inspired by the `#!py os.path` & `#!py fnmatch` modules
 
 
 
 ## Methods
 ### Initialisers
-`#!python def from_file(cls, filename: str) -> Archive:`
+`#!py def from_file(cls, filename: str) -> Archive:`
 :   open Archive from a file
 
-`#!python def from_archive(cls, parent_archive: Archive, filename: str) -> Archive:`
+`#!py def from_archive(cls, parent_archive: Archive, filename: str) -> Archive:`
 :   open Archive from inside another Archive
 
-`#!python def from_bytes(cls, raw_archive: bytes) -> Archive:`
+`#!py def from_bytes(cls, raw_archive: bytes) -> Archive:`
 :   open Archive from raw bytes
 
-`#!python def from_stream(cls, stream: io.BytesIO) -> Archive:`
+`#!py def from_stream(cls, stream: io.BytesIO) -> Archive:`
 :   open Archive from a bytestream
 
 
 ### General Utilities
-`#!python def namelist(self) -> List[str]:`
-:   returns a list of all filenames present in the archive
+`#!py def namelist(self) -> List[str]:`
+:   returns a list of all filenames present in the Archive
 
-`#!python def read(self, filename: str) -> bytes:`
-:   returns the raw bytes of `filename`
+`#!py def read(self, filename: str) -> bytes:`
+:   returns the raw bytes of `#!py filename`
 
-`#!python def sizeof(self, filename: str) -> int:`
-:   returns the length of `filename` (in bytes)
+`#!py def sizeof(self, filename: str) -> int:`
+:   returns the length of `#!py filename` (in bytes)
 
 
 ### Path Utilities
-`#!python def is_dir(self, filename: str) -> bool:`
-:   returns `True` if `filename` is a folder inside `Archive`
+`#!py def is_dir(self, filename: str) -> bool:`
+:   returns `#!py True` if `#!py filename` is a folder inside the Archive
 
-`#!python def is_path(self, filename: str) -> bool:`
-:   returns `True` if `filename` is a file inside `Archive`
+`#!py def is_path(self, filename: str) -> bool:`
+:   returns `#!py True` if `filename` is a file inside the Archive
 
-`#!python def path_exists(self, filename: str) -> bool:`
-:   returns `True` if `filename` `is_dir` or `is_path`
+`#!py def path_exists(self, filename: str) -> bool:`
+:   returns `#!py True` if `#!py filename` `#!py is_dir` or `#!py is_path`
 
-`#!python def search(self, pattern="*.bsp", case_sensitive=False) -> List[str]:`
-:   find all filenames matching `pattern` in `Archive`
+`#!py def search(self, pattern="*.bsp", case_sensitive=False) -> List[str]:`
+:   find all filenames matching `#!py pattern` in the Archive
 
-`#!python def tree(self, folder: str = ".", depth: int = 0):`
-:   pretty print contents of `Archive` starting at `folder`
+`#!py def tree(self, folder: str = ".", depth: int = 0):`
+:   pretty print contents of the Archive, starting at `#!py folder`
 
 
 ### Extraction
-`#!python def extract(self, filename: str, to_path=None):`
-:   write the contents of `filename` to a file in the working directory (or `to_path`)
+`#!py def extract(self, filename: str, to_path=None):`
+:   write the contents of `#!py filename` to a file
 
-`#!python def extract_all(self, to_path=None):`
-:   run `.extract()` on every file in `Archive.namelist()`
+`#!py def extract_all(self, to_path=None):`
+:   run `#!py .extract()` on every file in `#!py Archive.namelist()`
 
-`#!python def extract_all_matching(self, pattern="*.bsp", to_path=None, case_sensitive=False):`
-:   run `.extract()` of every file in `Archive.search(pattern)`
+`#!py def extract_all_matching(self, pattern="*.bsp", to_path=None, case_sensitive=False):`
+:   run `#!py .extract()` on every file in `#!py Archive.search(pattern)`

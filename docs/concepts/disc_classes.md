@@ -1,6 +1,6 @@
 # DiscClasses
 
-`DiscClasses` are based on `bsp_tool.archives.DiscImage`
+`DiscClasses` are subclasses of `bsp_tool.archives.DiscImage`
 
 They emulate a CD-ROM disc image
 
