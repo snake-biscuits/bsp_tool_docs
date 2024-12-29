@@ -1,0 +1,58 @@
+{
+  "ace_team.zeno_clash": { "first_appeared": "2009-04-21", "children": []},
+  "arkane.dark_messiah_mp": {
+    "first_appeared": "2006-10-24",
+    "children": [
+      "arkane.dark_messiah_sp"]},
+  "arkane.dark_messiah_sp": { "first_appeared": "2006-10-24", "children": []},
+  "loiste.infra": { "first_appeared": "2016-01-16", "children": []},
+  "nexon.cso2": {
+    "first_appeared": "2013-11-28",
+    "children": [
+      "nexon.cso2_2018"]},
+  "nexon.cso2_2018": { "first_appeared": "2013-11-28", "children": []},
+  "nexon.vindictus": {
+    "first_appeared": "2012-06-23",
+    "children": [
+      "nexon.cso2"]},
+  "nexon.vindictus69": {
+    "first_appeared": "2012-01-21",
+    "children": [
+      "nexon.vindictus"]},
+  "outerlight.outerlight": { "first_appeared": "2006-07-11", "children": []},
+  "strata.strata": { "first_appeared": "2024-01-07", "children": []},
+  "troika.vampire": { "first_appeared": "2004-11-16", "children": []},
+  "utoplanet.merubasu": { "first_appeared": "2017-02-14", "children": []},
+  "valve.alien_swarm": { "first_appeared": "2010-07-19", "children": []},
+  "valve.left4dead": {
+    "first_appeared": "2008-11-17",
+    "children": [
+      "valve.left4dead2"]},
+  "valve.left4dead2": { "first_appeared": "2009-11-17", "children": []},
+  "valve.orange_box": {
+    "first_appeared": "2006-11-29",
+    "children": [
+      "arkane.dark_messiah_mp",
+      "nexon.vindictus69",
+      "outerlight.outerlight",
+      "utoplanet.merubasu",
+      "valve.alien_swarm",
+      "valve.left4dead",
+      "valve.orange_box_x360",
+      "valve.sdk_2013",
+      "valve.source_filmmaker"]},
+  "valve.orange_box_x360": { "first_appeared": "2007-10-10", "children": []},
+  "valve.sdk_2013": {
+    "first_appeared": "2011-04-09",
+    "children": [
+      "loiste.infra",
+      "strata.strata",
+      "valve.sdk_2013_x360"]},
+  "valve.sdk_2013_x360": { "first_appeared": "2011-04-19", "children": []},
+  "valve.source": {
+    "first_appeared": "2004-06-01",
+    "children": [
+      "valve.orange_box",
+      "troika.vampire"]},
+  "valve.source_filmmaker": { "first_appeared": "2012-07-11", "children": []}
+}
