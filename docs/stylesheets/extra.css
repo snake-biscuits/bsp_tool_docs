@@ -4,6 +4,55 @@
 }
 
 
+/* svg flowcharts */
+.svg-wrapper > svg > path {
+  stroke-width: 3;  /* not centered? */
+  stroke: #EEE;
+  fill: transparent;
+}
+
+.branch {
+  border-radius: 0.5rem;
+  color: #EEE;
+  display: inline-block;
+  outline: 1px solid #EEE;
+  overflow: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+a.branch         {
+  color: #EEE;
+  font-size: 12px;
+}
+a.branch:hover   { color: #222; }
+a.branch:visited { color: #D1D; }
+
+/* branch label colours from GitHub */
+.zeno-clash       { background-color: #4E1921; }
+.alien-swarm      { background-color: #5DF; }
+.cso2             { background-color: #B0B; }
+.cso2-2018        { background-color: #A0E; }
+.dark-messiah-mp  { background-color: #47DF04; }
+.dark-messiah-sp  { background-color: #2B0; }
+.infra            { background-color: #ACB; }
+.left4dead        { background-color: #EA1; }
+.left4dead2       { background-color: #3A3; }
+.merubasu         { background-color: #C2A; }
+.orange-box       { background-color: #D60; }
+.orange-box-x360  { background-color: #D40; }
+.outerlight       { background-color: #DA7; }
+.sdk-2013         { background-color: #47B; }
+.sdk-2013-x360    { background-color: #46A; }
+.source           { background-color: #FA0; }
+.source-filmmaker { background-color: #B72; }
+.strata           { background-color: #C11; }
+.vampire          { background-color: #F90; }
+.vindictus        { background-color: #89B; }
+.vindictus69      { background-color: #B80; }
+
+
+
 /* mkdocs-link-embeds */
 @keyframes anim_glow
 {
