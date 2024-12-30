@@ -2,9 +2,9 @@
 
 ## Spawnpoints
 <div class="grid cards" markdown>
- - [Install Guide](install.md)
- - [Usage](usage/index.md)
- - [Core Concepts](concepts/index.md)
+ - [Install Guide](guides/install.md)
+ - [Usage](guides/usage/index.md)
+ - [Glossary](glossary/index.md)
  - [Game Engines](engines/index.md)
  - [Guides](guides/index.md)
 

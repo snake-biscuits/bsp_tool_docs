@@ -1,6 +1,6 @@
 # `id_software.Pak`
 
-[ArchiveClass](../../concepts/archive_classes.md) for `.pak` files
+[ArchiveClass](../../glossary/archive_classes.md) for `.pak` files
 
 Uncompressed blob of data, not unlike a `.wad`
 

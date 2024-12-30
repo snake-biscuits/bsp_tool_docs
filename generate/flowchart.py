@@ -11,7 +11,7 @@ if __name__ == "__main__":
     scripts = ["branch"]
     for script in scripts:
         for sub_script in ("tables", "data"):
-            with open(f"generate/db/{script}.{sub_script}.sql") as sql_file:
+            with open(f"db/{script}.{sub_script}.sql") as sql_file:
                 db.executescript(sql_file.read())
 
     forks = db.execute(f"""

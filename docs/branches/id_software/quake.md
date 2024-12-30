@@ -1,10 +1,12 @@
 # `id_software.quake`
 
-> NOTE: **PLACEHOLDER**
+Where it all began.
 
 
 
 ## Games
+
+> TODO: svg timeline snippet
 
 | Release Date | Region | Platform | Title |
 | :----------- | :----- | :------- | :---- |
@@ -29,15 +31,15 @@
 
 
 
-## Archives
+## Archive File Formats
 
-| Extension | `bsp_tool` ArchiveClass        |
-| :-------- | :----------------------------- |
+| Extension | [ArchiveClass](../../glossary/archive_classes.md) |
+| :-------- | :---- |
 | `.pak`    | [`archives.id_software.Pak`](../../archives/id_software/pak.md) |
  
 
 
-## Coverage
+## `.bsp` Format Coverage
 
 > TODO: branch coverage w/ %age per-game
 
