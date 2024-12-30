@@ -1,7 +1,7 @@
 # BranchScripts
 
 BranchScripts describe the data-structures of specific `.bsp` format variants.
-They provide [BspClasses](bsp_classes.md) with [LumpClasses](lump_classes/index.md).
+They provide [BspClasses](bsp_classes.md) with [LumpClasses](lump_classes.md).
 Besides parsing bytes, they also attach methods to the `Bsp` for easier processing.
 Methods can be used for anything from getting texture names to exporting 3D models.
 

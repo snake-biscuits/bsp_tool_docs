@@ -31,7 +31,7 @@ Most lumps contain the same data-structure repeated over & over.
 There's some nuance to it, but that's the gist.
 
 
-## [LumpClass](lump_classes/index.md)
+## [LumpClass](lump_classes.md)
 
 A "Pythonic" representation of `.bsp` data-structures.
 Handles conversion to & from bytes, among other features.

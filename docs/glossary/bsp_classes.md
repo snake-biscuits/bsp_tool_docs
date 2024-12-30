@@ -1,6 +1,6 @@
 # BspClasses
 
-`BspClasses` are subclasses of `#!py bsp_tool.base.Bsp`
+`BspClasses` are subclasses of `base.Bsp`
 
 They provide a container for lumps & metadata
 
@@ -12,7 +12,7 @@ They provide a container for lumps & metadata
 :   open Bsp from file
 
 `#!py def from_archive(cls, branch: ModuleType, filepath: str, parent_archive) -> Bsp:`
-:   open Bsp from inside [Archive](archive_classes.md)
+:   open Bsp from inside an [ArchiveClass](archive_classes.md)
 
 `#!py def from_bytes(cls, branch: ModuleType, filepath: str, raw_bsp: bytes) -> Bsp:`
 :   open Bsp from raw bytes
@@ -31,7 +31,7 @@ They provide a container for lumps & metadata
 -->
 
 ### Branch Methods
-`BspClasses` cannot be initialised without a [BranchScript](branch_script.md).
+`BspClasses` cannot be initialised without a [BranchScript](branch_scripts.md).
 During initialisation the `#!py methods` of the BranchScript are attached to the Bsp.
 
 These methods expect a specific `.bsp` format, but can be shared between branches.

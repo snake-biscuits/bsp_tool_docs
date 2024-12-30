@@ -11,7 +11,7 @@ Id Software was certainly influential, but they're hardly pioneers.
 
 ## Inheritance
 
-[BranchScripts](../glossary/branch_scripts.md) inherit from one another where [LumpClasses](../glossary/lump_classes/index.md) can be reusued.
+[BranchScripts](../glossary/branch_scripts.md) inherit from one another where [LumpClasses](../glossary/lump_classes.md) can be reusued.
 This occurs in roughly chronogical order, where possible / sensible.
 
 One notable example of where this rule is broken is `troika.vampire`.
