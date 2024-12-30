@@ -15,19 +15,19 @@ Valve's legacy
     <path d="M 160 256 L 288 256" stroke="black" fill="transparent"/>
   
     <foreignObject x="16" y="248" width="256" height="32">
-      <a class="branch source" href="https://snake-biscuits.github.io/bsp_tool_docs/branches/valve/source/">valve.source</a>
+      <a class="node branch-source" href="../../branches/valve/source/">valve.source</a>
     </foreignObject>
   
     <foreignObject x="80" y="280" width="256" height="32">
-      <a class="branch vampire" href="https://snake-biscuits.github.io/bsp_tool_docs/branches/troika/vampire/">troika.vampire</a>
+      <a class="node branch-vampire" href="../../branches/troika/vampire/">troika.vampire</a>
     </foreignObject>
   
     <foreignObject x="136" y="248" width="256" height="32">
-      <a class="branch orange-box" href="https://snake-biscuits.github.io/bsp_tool_docs/branches/valve/orange_box/">valve.orange_box</a>
+      <a class="node branch-orange-box" href="../../branches/valve/orange_box/">valve.orange_box</a>
     </foreignObject>
   
     <foreignObject x="288" y="248" width="256" height="32">
-      <a class="branch sdk-2013" href="https://snake-biscuits.github.io/bsp_tool_docs/branches/valve/sdk_2013/">valve.sdk_2013</a>
+      <a class="node branch-sdk-2013" href="../../branches/valve/sdk_2013/">valve.sdk_2013</a>
     </foreignObject>
   </svg>
 </div>

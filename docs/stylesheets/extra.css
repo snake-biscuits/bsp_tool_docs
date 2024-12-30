@@ -11,45 +11,60 @@
   fill: transparent;
 }
 
-.branch {
+.node {
   border-radius: 0.5rem;
   color: #EEE;
   display: inline-block;
-  outline: 1px solid #EEE;
   overflow: auto;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
 
-a.branch         {
-  color: #EEE;
+a.node         {
+  color: #DDD;
   font-size: 12px;
 }
-a.branch:hover   { color: #222; }
-a.branch:visited { color: #D1D; }
+a.node:hover   { color: #222; }
+a.node:visited { color: #748; }
 
-/* branch label colours from GitHub */
-.zeno-clash       { background-color: #4E1921; }
-.alien-swarm      { background-color: #5DF; }
-.cso2             { background-color: #B0B; }
-.cso2-2018        { background-color: #A0E; }
-.dark-messiah-mp  { background-color: #47DF04; }
-.dark-messiah-sp  { background-color: #2B0; }
-.infra            { background-color: #ACB; }
-.left4dead        { background-color: #EA1; }
-.left4dead2       { background-color: #3A3; }
-.merubasu         { background-color: #C2A; }
-.orange-box       { background-color: #D60; }
-.orange-box-x360  { background-color: #D40; }
-.outerlight       { background-color: #DA7; }
-.sdk-2013         { background-color: #47B; }
-.sdk-2013-x360    { background-color: #46A; }
-.source           { background-color: #FA0; }
-.source-filmmaker { background-color: #B72; }
-.strata           { background-color: #C11; }
-.vampire          { background-color: #F90; }
-.vindictus        { background-color: #89B; }
-.vindictus69      { background-color: #B80; }
+/* loosely similar to label colours on GitHub */
+/* branches */
+.branch-alien-swarm      { background-color: #5DF; }
+.branch-cso2             { background-color: #B0B; }
+.branch-cso2-2018        { background-color: #A0E; }
+.branch-dark-messiah-mp  { background-color: #5E0; }
+.branch-dark-messiah-sp  { background-color: #2B0; }
+.branch-infra            { background-color: #ACB; }
+.branch-left4dead        { background-color: #EA1; }
+.branch-left4dead2       { background-color: #3A3; }
+.branch-merubasu         { background-color: #C2A; }
+.branch-orange-box       { background-color: #D60; }
+.branch-orange-box-x360  { background-color: #D40; }
+.branch-outerlight       { background-color: #DA7; }
+.branch-sdk-2013         { background-color: #47B; }
+.branch-sdk-2013-x360    { background-color: #46A; }
+.branch-source           { background-color: #FA0; }
+.branch-source-filmmaker { background-color: #B72; }
+.branch-strata           { background-color: #C11; }
+.branch-vampire          { background-color: #F90; }
+.branch-vindictus        { background-color: #89B; }
+.branch-vindictus69      { background-color: #B80; }
+.branch-zeno-clash       { background-color: #422; }
+.branch-quake            { background-color: #821; }
+.branch-quake64          { background-color: #E71; }
+.branch-hexen2           { background-color: #A00; }
+
+/* engines */
+.engine-genesis3d { background-color: #467; }
+.engine-id-tech2  { background-color: #173; }
+.engine-id-tech3  { background-color: #666; }
+.engine-iw        { background-color: #451; }
+.engine-quake     { background-color: #821; }
+.engine-quake2    { background-color: #284; }
+.engine-rmq       { background-color: #940; }
+.engine-goldsrc   { background-color: #F80; }
+.engine-source    { background-color: #E90; }
+.engine-titanfall { background-color: #48A; }
 
 
 
