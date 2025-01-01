@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<svg viewbox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" rx="16" ry="16" width="64" height="64" fill="#333"/>
+  <polyline points="22,42 32,22 42,32 22,52" fill="#CCC"/>
+  <circle cx="22" cy="46" r="6" fill="#CCC"/>
+  <circle cx="22" cy="46" r="4" fill="#333"/>
+  <path d="M 0 32 L 22 46" stroke-width="4" stroke="#CCC"/>
+  <circle cx="22" cy="46" r="2" fill="#CCC"/>
+  <circle cx="42" cy="22" r="10" fill="#CCC"/>
+  <circle cx="42" cy="22" r="8" fill="#333"/>
+  <circle cx="42" cy="22" r="6" fill="#CCC"/>
+</svg>

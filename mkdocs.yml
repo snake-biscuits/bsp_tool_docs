@@ -17,6 +17,7 @@ theme:
     logo: material/tools
     # TODO: favicon
     repo: fontawesome/brands/github
+  custom_dir: overrides
 
 plugins:
   - search
@@ -30,6 +31,12 @@ markdown_extensions:
   - def_list
   - footnotes
   - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span

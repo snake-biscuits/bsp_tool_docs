@@ -24,7 +24,11 @@ def markdown_for(delevoper: str, branch: str):
         WHERE D.name == '{developer}' AND B.name == '{branch}'
         """).fetchall()
 
-    # TODO: game version & icon for matching in LumpClass table
+    # TODO: merge games to get a list of regions & platforms
+    # -- keep first release date
+    # TODO: region -> emoji (flags?)
+    # TODO: platform.short -> :platform-short: emoji
+    # TODO: game version & icon (emoji?) for matching in LumpClass table
     out.extend([
         "## Games",
         "| Release Date | Region | Platform | Title |",
