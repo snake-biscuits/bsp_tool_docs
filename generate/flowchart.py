@@ -3,6 +3,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) != 2:
         print(f"USAGE:    {sys.argv[0]} ENGINE_NAME")
+        sys.exit()
     engine = sys.argv[1]
 
     # load the db

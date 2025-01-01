@@ -1,21 +1,35 @@
-"""generate a .md for the given branch script"""
+import sqlite3
 
 
-def markdown_for(branch_script):
-    out = list()
-    developer, branch = branch_script.__name__.split(".")[-2:]
-    out.append(f"# `{developer}.{branch}`" + "\n")
+def markdown_for(delevoper: str, branch: str):
+    out = [f"# `{developer}.{branch}`" + "\n"]
 
-    # TODO: load the sql db
-    # TODO: table of games
+    db = sqlite3.connect(":memory:")
+
+    scripts = ["branch", "game", "release"]
+    for script in scripts:
+        for sub_script in ("tables", "data"):
+            with open(f"db/{script}.{sub_script}.sql") as sql_file:
+                db.executescript(sql_file.read())
+
+    games = db.execute(f"""
+        SELECT R.day, RR.name, P.name, G.name
+        FROM       ReleaseBranch AS RB
+        INNER JOIN Release       AS R ON RB.release  == R.rowid
+        INNER JOIN Branch        AS B ON RB.branch   == B.rowid
+        INNER JOIN Game          AS G ON R.game      == G.rowid
+        INNER JOIN Region        AS RR ON R.region   == RR.rowid
+        INNER JOIN Platform      AS P ON R.platform  == P.rowid
+        INNER JOIN Developer     AS D ON B.developer == D.rowid
+        WHERE D.name == '{developer}' AND B.name == '{branch}'
+        """).fetchall()
+
+    # TODO: game version & icon for matching in LumpClass table
     out.extend([
         "## Games",
         "| Release Date | Region | Platform | Title |",
-        "| :----------- | :----- | :------- | :---- |"])
-    # for game in games:
-    #     row = f"| {'|'.join([game.day, game.region, game.platform, game.title])} |"
-    #     out.append()
-    # TODO: game version & icon for matching in LumpClass table
+        "| :----------- | :----- | :------- | :---- |",
+        *[f"| {' | '.join(game)} |" for game in sorted(games)]])
 
     # TODO: links to pages for archives & tools (editors, compilers etc.) in docs
 
@@ -39,3 +53,13 @@ def markdown_for(branch_script):
     # -- Apex Legends v0 lumps except for GameLump
 
     return "\n".join(out)
+
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) != 3:
+        print(f"USAGE:    {sys.argv[0]} DEVELOPER_NAME BRANCH_NAME")
+        sys.exit()
+    developer, branch = sys.argv[1:]
+
+    print(markdown_for(developer, branch))
