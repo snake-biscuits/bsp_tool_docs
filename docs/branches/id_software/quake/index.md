@@ -33,9 +33,9 @@ Where it all began.
 
 ## Archive File Formats
 
-| Extension | [ArchiveClass](../../glossary/archive_classes.md) |
+| Extension | [ArchiveClass](../../../glossary/archive_classes.md) |
 | :-------- | :---- |
-| `.pak`    | [`archives.id_software.Pak`](../../archives/id_software/pak.md) |
+| `.pak`    | [`archives.id_software.Pak`](../../../archives/id_software/pak.md) |
  
 
 

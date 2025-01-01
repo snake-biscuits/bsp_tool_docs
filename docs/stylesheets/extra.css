@@ -1,6 +1,6 @@
 /* custom code highlighting colours */
 :root > * {
-  --md-code-hl-name-color: #EEAA22;
+  --md-code-hl-name-color: #EA2;
 }
 
 
@@ -13,6 +13,7 @@
 
 .node {
   border-radius: 0.5rem;
+  background-color: #EA2;
   color: #EEE;
   display: inline-block;
   overflow: auto;
