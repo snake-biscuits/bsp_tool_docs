@@ -22,7 +22,7 @@ INSERT INTO Platform(name, short) VALUES
 	('Switch','Switch'),
 	('Wii','Wii'),
 	('Dreamcast','DC'),
-	('Saturn','SS'),
+	('Saturn','Saturn'),
 	('Play Station','PSX'),
 	('Play Station 2','PS2'),
 	('Play Station 3','PS3'),
