@@ -2,6 +2,7 @@
 this is a feature of the Material theme
 could be a handy way of decoupling the db output from general prose (`.md` files)
 
+
 ## embedding cards
 [Zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten)
 
@@ -39,3 +40,10 @@ generate `.csv` tables from `db` for:
  - [ ] LumpClass coverage
  - [ ] per-branch Toolsets
  * and a bunch of others I'm forgetting
+
+
+### LumpClasses
+ * use git-blame & python inspect to check code is current
+ * tabbed C++ & Python code samples
+   - revisit `.as_cpp`, design it for docs
+   - common sub-structs based on `_classes` (e.g. Vector3)
