@@ -44,6 +44,13 @@ generate `.csv` tables from `db` for:
 
 ### LumpClasses
  * use git-blame & python inspect to check code is current
+   - put a note if updated since last release (stable vs. nightly)
+   - automated warnings for if docs are outdated
  * tabbed C++ & Python code samples
    - revisit `.as_cpp`, design it for docs
    - common sub-structs based on `_classes` (e.g. Vector3)
+ * link to definition on GitHub
+ * indexing
+   - lumps indexed
+   - lumps indexed by
+   - system(s) containing this lump
