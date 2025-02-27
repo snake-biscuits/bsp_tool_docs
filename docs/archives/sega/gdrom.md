@@ -1,8 +1,8 @@
 # `sega.GDRom`
 
-[ArchiveClass](../../glossary/archive_classes.md) for Sega Dreamcast discs.
+[ArchiveClass](../../glossary/archive_classes.md) for Sega Dreamcast discs
 
-Can be initialised from any [DiscClass](../../glossary/disc_classes.md).
+Can be initialised from any [DiscClass](../../glossary/disc_classes.md)
 
 
 ## Disc Image Formats

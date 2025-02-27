@@ -1,7 +1,7 @@
 # Format Variants
 
 Each [BranchScript](../glossary/branch_scripts.md) describes a variant of the `.bsp` format.
-Almost all branches can trace their lineage back to [Quake](id_software/quake.md).
+Almost all branches can trace their lineage back to [Quake](id_software/quake/index.md).
 
 Except for [Genesis3D](wild_tangent/genesis3d.md).
 Which seems to have taken many similar approaches at around the same time.
