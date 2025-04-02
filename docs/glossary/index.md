@@ -1,6 +1,5 @@
 # Glossary
 
-
 ## [ArchiveClass](archive_classes.md)
 
 Virtual filesystem for accessing files inside archives (e.g. `.zip`)
@@ -35,3 +34,8 @@ There's some nuance to it, but that's the gist.
 
 A "Pythonic" representation of `.bsp` data-structures.
 Handles conversion to & from bytes, among other features.
+
+
+## [System](system.md)
+
+Collection of lumps used for a common purpose.
