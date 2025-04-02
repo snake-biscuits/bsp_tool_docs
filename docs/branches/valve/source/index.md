@@ -1,6 +1,7 @@
 # `valve.source`
 
 ## Games
+
 | Release Date | Region | Platform | Title |
 | :----------- | :----- | :------- | :---- |
 | 2004-06-01 | :octicons-globe-24: | :platform-steam: | Half-Life: Source |
