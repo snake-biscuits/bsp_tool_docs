@@ -1,7 +1,7 @@
 import sqlite3
 
 
-def markdown_for(delevoper: str, branch: str):
+def markdown_for(developer: str, branch: str):
     out = [f"# `{developer}.{branch}`" + "\n"]
 
     db = sqlite3.connect(":memory:")

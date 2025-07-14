@@ -1,0 +1,9 @@
+# `wild_tangent.Genesis3DBsp`
+
+Fork of [`id_software.IdTechBsp`](/bsps/id_software/IdTechBsp)
+
+
+## Supported Branches
+
+ * `wild_tangent`
+  - [`genesis3d`](/branches/wild_tangent/genesis3d)
