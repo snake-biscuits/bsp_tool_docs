@@ -1,9 +1,9 @@
 # `id_software.Quake64Bsp`
 
-Fork of [`id_software.ReMakeQuakeBsp`](/bsps/id_software/ReMakeQuakeBsp)
+Fork of [`id_software.ReMakeQuakeBsp`](../id_software/ReMakeQuakeBsp.md)
 
 
 ## Supported Branches
 
  * `id_software`
-  - [`quake64`](/branches/id_software/quake64)
+    - [`quake64`](../../branches/id_software/quake64/index.md)

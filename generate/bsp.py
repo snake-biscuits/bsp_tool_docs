@@ -38,7 +38,7 @@ def generate_one(db, developer: str, bsp_class: str):
 
     # NOTE: should have 0 or 1 parents
     out.extend([
-        f"Fork of [`{developer}.{bsp_class}`](/bsps/{developer}/{bsp_class})"
+        f"Fork of [`{developer}.{bsp_class}`](../{developer}/{bsp_class}.md)"
         for developer, bsp_class in parent_classes])
 
     if len(parent_classes) > 0:
@@ -71,8 +71,8 @@ def generate_one(db, developer: str, bsp_class: str):
         out.append(f" * `{developer}`")
         for branch in sorted(branches[developer]):
             name = f"{branch}"
-            link = f"/branches/{developer}/{branch}"
-            out.append(f"  - [`{name}`]({link})")
+            link = f"../../branches/{developer}/{branch}/index.md"
+            out.append(f"    - [`{name}`]({link})")
 
     return "\n".join(out)
 

@@ -1,9 +1,8 @@
+import os
 import sqlite3
 
 
-def markdown_for(developer: str, branch: str):
-    out = [f"# `{developer}.{branch}`" + "\n"]
-
+def generate_all():
     db = sqlite3.connect(":memory:")
 
     scripts = ["branch", "game", "release"]
@@ -11,6 +10,24 @@ def markdown_for(developer: str, branch: str):
         for sub_script in ("tables", "data"):
             with open(f"db/{script}.{sub_script}.sql") as sql_file:
                 db.executescript(sql_file.read())
+
+    branches = db.execute("""
+        SELECT D.name, B.name
+        FROM Branch AS B
+        INNER JOIN Developer AS D ON B.developer == D.rowid
+        """).fetchall()
+
+    for developer, branch in branches:
+        filename = f"./docs/branches/{developer}/{branch}/index.md"
+        os.makedirs(os.path.dirname(filename), exist_ok="True")
+        with open(filename, "w") as md_file:
+            md_file.write(generate_index(db, developer, branch))
+        # TODO: other generators
+        # -- lump classes
+
+
+def generate_index(db, developer: str, branch: str):
+    out = [f"# `{developer}.{branch}`" + "\n"]
 
     games = db.execute(f"""
         SELECT R.day, RR.name, P.name, G.name
@@ -24,6 +41,12 @@ def markdown_for(developer: str, branch: str):
         WHERE D.name == '{developer}' AND B.name == '{branch}'
         """).fetchall()
 
+    games2 = list()
+    for date, region, publisher, game in games:
+        if date is None:
+            date = ""
+        games2.append((date, region, publisher, game))
+
     # TODO: merge games to get a list of regions & platforms
     # -- keep first release date
     # TODO: region -> emoji (flags?)
@@ -33,7 +56,9 @@ def markdown_for(developer: str, branch: str):
         "## Games",
         "| Release Date | Region | Platform | Title |",
         "| :----------- | :----- | :------- | :---- |",
-        *[f"| {' | '.join(game)} |" for game in sorted(games)]])
+        *[
+            f"| {' | '.join(game)} |"
+            for game in sorted(games2)]])
 
     # TODO: links to pages for archives & tools (editors, compilers etc.) in docs
 
@@ -60,10 +85,4 @@ def markdown_for(developer: str, branch: str):
 
 
 if __name__ == "__main__":
-    import sys
-    if len(sys.argv) != 3:
-        print(f"USAGE:    {sys.argv[0]} DEVELOPER_NAME BRANCH_NAME")
-        sys.exit()
-    developer, branch = sys.argv[1:]
-
-    print(markdown_for(developer, branch))
+    generate_all()

@@ -1,27 +1,6 @@
-# `wild_tangent.genesis3D`
-
-Sole branch of the Genesis3D game engine.
-
-An interesting contemporary to the Id Tech Engines of the time.
-Used for some notable games which I won't be mentioning here.
-
+# `wild_tangent.genesis3d`
 
 ## Games
-> TODO
-<!-- do I have to include __that one__? i hope not. -->
-
-
-## Tools
-> TODO
-
-
-## Archives
-> TODO (none iirc)
-
-
-## Coverage
-> TODO
-
-
-## LumpClasses
-> TODO
+| Release Date | Region | Platform | Title |
+| :----------- | :----- | :------- | :---- |
+| 2000-??-?? | The Netherlands | PC | AmsterDoom |
