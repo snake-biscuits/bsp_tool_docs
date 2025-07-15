@@ -1,15 +1,10 @@
 import collections
-import sqlite3
+
+from . import utils
 
 
 def generate_all():
-    db = sqlite3.connect(":memory:")
-
-    scripts = ["branch", "bsp"]
-    for script in scripts:
-        for sub_script in ("tables", "data"):
-            with open(f"db/{script}.{sub_script}.sql") as sql_file:
-                db.executescript(sql_file.read())
+    db = utils.load_db("branch", "bsp")
 
     bsp_classes = db.execute("""
         SELECT D.name, BC.name
@@ -19,10 +14,10 @@ def generate_all():
 
     for developer, bsp_class in bsp_classes:
         with open(f"./docs/bsps/{developer}/{bsp_class}.md", "w") as md_file:
-            md_file.write(generate_one(db, developer, bsp_class))
+            md_file.write(index_md(db, developer, bsp_class))
 
 
-def generate_one(db, developer: str, bsp_class: str):
+def index_md(db, developer: str, bsp_class: str):
     out = [f"# `{developer}.{bsp_class}`" + "\n"]
 
     # BspClass(es) this one is a fork of
@@ -75,7 +70,3 @@ def generate_one(db, developer: str, bsp_class: str):
             out.append(f"    - [`{name}`]({link})")
 
     return "\n".join(out)
-
-
-if __name__ == "__main__":
-    generate_all()

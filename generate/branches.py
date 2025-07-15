@@ -1,15 +1,10 @@
 import os
-import sqlite3
+
+from . import utils
 
 
 def generate_all():
-    db = sqlite3.connect(":memory:")
-
-    scripts = ["branch", "game", "release"]
-    for script in scripts:
-        for sub_script in ("tables", "data"):
-            with open(f"db/{script}.{sub_script}.sql") as sql_file:
-                db.executescript(sql_file.read())
+    db = utils.load_db("branch", "game", "release")
 
     branches = db.execute("""
         SELECT D.name, B.name
@@ -21,12 +16,12 @@ def generate_all():
         filename = f"./docs/branches/{developer}/{branch}/index.md"
         os.makedirs(os.path.dirname(filename), exist_ok="True")
         with open(filename, "w") as md_file:
-            md_file.write(generate_index(db, developer, branch))
+            md_file.write(index_md(db, developer, branch))
         # TODO: other generators
         # -- lump classes
 
 
-def generate_index(db, developer: str, branch: str):
+def index_md(db, developer: str, branch: str):
     out = [f"# `{developer}.{branch}`" + "\n"]
 
     games = db.execute(f"""
@@ -82,7 +77,3 @@ def generate_index(db, developer: str, branch: str):
     # -- Apex Legends v0 lumps except for GameLump
 
     return "\n".join(out)
-
-
-if __name__ == "__main__":
-    generate_all()

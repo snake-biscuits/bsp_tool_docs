@@ -1,20 +1,22 @@
-if __name__ == "__main__":
-    import sys
+from . import utils
 
-    if len(sys.argv) != 2:
-        print(f"USAGE:    {sys.argv[0]} ENGINE_NAME")
-        sys.exit()
-    engine = sys.argv[1]
 
-    # load the db
-    import sqlite3
-    db = sqlite3.connect(":memory:")
-    scripts = ["branch"]
-    for script in scripts:
-        for sub_script in ("tables", "data"):
-            with open(f"db/{script}.{sub_script}.sql") as sql_file:
-                db.executescript(sql_file.read())
+def generate_all():
+    db = utils.load_db("branch")
 
+    engines = db.execute("""
+        SELECT name FROM Engine
+        """).fetchall()
+
+    for (engine,) in engines:
+        # TODO: write svg as part of a full engine markdown page
+        print("=" * 30)
+        print(engine)
+        print("-" * 30)
+        print(forks_svg(db, engine))
+
+
+def forks_svg(db, engine):
     forks = db.execute(f"""
         SELECT BD.name, BB.name, FD.name, FB.name
         FROM       BranchFork AS BF
@@ -22,7 +24,7 @@ if __name__ == "__main__":
         INNER JOIN Developer  AS BD ON BD.rowid == BB.developer
         INNER JOIN Branch     AS FB ON FB.rowid == BF.fork
         INNER JOIN Developer  AS FD ON FD.rowid == FB.developer
-        INNER JOIN Engine     AS E  ON BB.engine == E.rowid AND FB.engine == E.rowid
+        INNER JOIN Engine     AS E  ON BB.engine == E.rowid OR FB.engine == E.rowid
         WHERE E.name == '{engine}'
         """).fetchall()
 
@@ -54,16 +56,18 @@ if __name__ == "__main__":
     # --     ORDER BY X.release_day ASC
     # --     """).fetchall()
 
-    styles = db.execute(f"""
+    styles = db.execute("""
         SELECT CONCAT('.', B.name, ' { background-color: #', B.colour, '; }')
         FROM Branch AS B
-        INNER JOIN Engine AS E ON B.engine == E.rowid
+        INNER JOIN Engine AS E ON B.engine == E.rowid""" + f"""
         WHERE E.name == '{engine}'
         """).fetchall()
     styles = [x[0].replace("_", "-") for x in styles]
 
     site = "https://snake-biscuits.github.io/bsp_tool_docs"
 
+    # TODO: use lxml to generate xml
+    # -- might also be some library to help with .css
     svg_lines = [
         "<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>",
         "  <style>",
@@ -90,4 +94,8 @@ if __name__ == "__main__":
             for (dev, branch), (x, y) in nodes.items()],
         "</svg>"]
 
-    print("\n").join(svg_lines)
+    return "\n".join(svg_lines)
+
+
+if __name__ == "__main__":
+    generate_all()
