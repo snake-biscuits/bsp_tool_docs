@@ -10,8 +10,8 @@ Portal --> PortalEdgeReferences   -> PortalEdges -> PortalVertices
 ```
 
 ```
-PortalVertexEdges -> PortalEdgeIntersectHeader -> PortalIntersectAtEdge   -> PortalEdges
-                                              \-> PortalIntersectAtVertex -> PortalVertices
+PortalVertexEdges -> PortalEdgeIntersectHeader -> PortalIntersectEdge   -> PortalEdges
+                                              \-> PortalIntersectVertex -> PortalVertices
 ```
 
 ```
@@ -19,9 +19,7 @@ PortalVertexEdges is parallel w/ PortalVertices
 ```
 
 ```
-PortalIntersectHeader is pseudo-parallel w/ PortalEdges (twice as many Edge as Header)
-PortalEdgeReferences doesn't reference every entry in PortalEdges
-Most PortalEdgeReferences entries are even, less are odd
+PortalEdgeIntersectHeader is parallel w/ PortalEdges (twice as many Edges as Headers)
 ```
 
 
@@ -34,9 +32,9 @@ Titanfall's `mp_angel_city` was very useful when reverse engineering the Portal 
 >>> import bsp_tool
 >>> bsp = bsp_tool.load_bsp("/home/bikkie/drives/ssd1/Mod/Titanfall/maps/mp_angel_city.bsp")
 >>> bsp.PORTALS[:3]
-[<Portal (is_reversed: 0, type: <PortalType.CELL: 0>, num_edges: 4, padding: 0, first_reference: 0, cell: 1, plane: 0)>,
- <Portal (is_reversed: 0, type: <PortalType.CELL: 0>, num_edges: 4, padding: 0, first_reference: 4, cell: 1, plane: 0)>,
- <Portal (is_reversed: 0, type: <PortalType.CELL: 0>, num_edges: 4, padding: 0, first_reference: 8, cell: 1, plane: 0)>]
+[<Portal (is_reversed: 0, type: <PortalType.CELL: 0>, num_refs: 4, padding: 0, first_ref: 0, cell: 1, plane: 0)>,
+ <Portal (is_reversed: 0, type: <PortalType.CELL: 0>, num_refs: 4, padding: 0, first_ref: 4, cell: 1, plane: 0)>,
+ <Portal (is_reversed: 0, type: <PortalType.CELL: 0>, num_refs: 4, padding: 0, first_ref: 8, cell: 1, plane: 0)>]
 ```
 
 We can get vertex loop by doing a `Portal->PortalVertRef->PortalVert` lookup:
@@ -102,14 +100,14 @@ The `IndexSet` is a variable length list (max 8 entries).
 
 ```python
 >>> {i+1: ves for i, ves in enumerate(bsp.PORTAL_VERTEX_EDGES[1:8+1])}
-{1: PortalIndexSet(index=(0, 1, -1, -1, -1, -1, -1, -1)),
- 2: PortalIndexSet(index=(1, 2, -1, -1, -1, -1, -1, -1)),
- 3: PortalIndexSet(index=(2, 3, 33, -1, -1, -1, -1, -1)),
- 4: PortalIndexSet(index=(0, 3, 36, -1, -1, -1, -1, -1)),
- 5: PortalIndexSet(index=(4, 1, -1, -1, -1, -1, -1, -1)),
- 6: PortalIndexSet(index=(1, 5, -1, -1, -1, -1, -1, -1)),
- 7: PortalIndexSet(index=(5, 3, 41, -1, -1, -1, -1, -1)),
- 8: PortalIndexSet(index=(4, 3, 31, -1, -1, -1, -1, -1))}
+{1: PortalIndexSet(indices=(0, 1, -1, -1, -1, -1, -1, -1)),
+ 2: PortalIndexSet(indices=(1, 2, -1, -1, -1, -1, -1, -1)),
+ 3: PortalIndexSet(indices=(2, 3, 33, -1, -1, -1, -1, -1)),
+ 4: PortalIndexSet(indices=(0, 3, 36, -1, -1, -1, -1, -1)),
+ 5: PortalIndexSet(indices=(4, 1, -1, -1, -1, -1, -1, -1)),
+ 6: PortalIndexSet(indices=(1, 5, -1, -1, -1, -1, -1, -1)),
+ 7: PortalIndexSet(indices=(5, 3, 41, -1, -1, -1, -1, -1)),
+ 8: PortalIndexSet(indices=(4, 3, 31, -1, -1, -1, -1, -1))}
 ```
 
 Taking our vertex loops from the `Portal->PortalVertexRefs->PortalVertices` lookup, we can see a pattern:
@@ -283,47 +281,79 @@ From analysing the ranges of the indices in these index sets, we ca assume:
  * `PEIV` indexes into `PortalVertices`
 
 ```python
->>> [bsp.PORTAL_EDGE_INTERSECT_AT_VERTEX[h.start:h.start+h.count] for h in bsp.PORTAL_EDGE_INTERSECT_HEADER[:6]]
-[[PortalIndexSet(index=(1, 4, 36, 35, 4, 36, -1, -1))],
- [PortalIndexSet(index=(1, 2, 5, 6, -1, -1, -1, -1))],
- [PortalIndexSet(index=(2, 3, 37, 3, 37, -1, -1, -1))],
- [PortalIndexSet(index=(4, 3, 8, 7, 45, 53, 8, 3)), PortalIndexSet(index=(4, 53, 45, 7, -1, -1, -1, -1))],
- [PortalIndexSet(index=(5, 8, 33, 34, 41, 42, 58, 8)), PortalIndexSet(index=(41, 33, 34, -1, -1, -1, -1, -1))],
- [PortalIndexSet(index=(6, 7, 54, 50, 51, 7, -1, -1))]]
->>> [bsp.PORTAL_EDGE_INTERSECT_AT_EDGE[h.start:h.start+h.count] for h in bsp.PORTAL_EDGE_INTERSECT_HEADER[:6]]
-[[PortalIndexSet(index=(1, 3, 18, 19, 36, 636, -1, -1))],
- [PortalIndexSet(index=(0, 2, 4, 5, -1, -1, -1, -1))],
- [PortalIndexSet(index=(1, 3, 18, 33, 46, -1, -1, -1))],
- [PortalIndexSet(index=(0, 2, 4, 5, 22, 24, 31, 33)), PortalIndexSet(index=(36, 37, 40, 41, -1, -1, -1, -1))],
- [PortalIndexSet(index=(1, 3, 18, 19, 20, 21, 25, 31)), PortalIndexSet(index=(42, 45, 988, -1, -1, -1, -1, -1))],
- [PortalIndexSet(index=(1, 3, 19, 21, 25, 41, -1, -1))]]
+>>> [[
+...         vertex_index
+...         for vset in bsp.PORTAL_EDGE_INTERSECT_VERTEX[h.first_set:h.first_set+h.num_sets]
+...         for vertex_index in vset.indices if vertex_index != -1]
+...     for h in bsp.PORTAL_EDGE_INTERSECT_HEADER[:6]]
+[[1, 4, 36, 35, 4, 36],
+ [1, 2,  5,  6],  # y=-17152, z=-2560
+ [2, 3, 37,  3, 37],
+ [4, 3,  8,  7, 45, 53,  8, 3,  4, 53, 45, 7],  # y=-15872, z=-2560
+ [5, 8, 33, 34, 41, 42, 58, 8, 41, 33, 34],
+ [6, 7, 54, 50, 51,  7]]
+>>> [[
+...         edge_index
+...         for eset in bsp.PORTAL_EDGE_INTERSECT_EDGE[h.first_set:h.first_set+h.num_sets]
+...         for edge_index in eset.indices if edge_index != -1]
+...     for h in bsp.PORTAL_EDGE_INTERSECT_HEADER[:6]]
+[[1, 3, 18, 19, 36, 636],
+ [0, 2,  4,  5],
+ [1, 3, 18, 33, 46],
+ [0, 2,  4,  5, 22,  24, 31, 33, 36, 37,  40, 41],
+ [1, 3, 18, 19, 20,  21, 25, 31, 42, 45, 988],
+ [1, 3, 19, 21, 25,  41]]
 ```
 
-Stripping out the syntax so we can focus on the indices:
+> Note how `PEIV` contains duplicate entries, but `PEIE` doesn't
+
+
+###  `PEIE`, `PEIV` pairs
+
+`PEIV[1]` is a list of points that lie along the same axis (`y=-17152, z=-2560`).
+So we know they're all part of the same edge.
+Do their corresponding `PEIE[1]` entries index other edge's they lie on?
 
 ```python
-PortalEdgeIntersectAtVertex 0..5
-  1   4  36  35   4  36
-  1   2   5   6 
-  2   3  37   3  37 
-  4   3   8   7  45  53   8   3   4  53  45  7
-  5   8  33  34  41  42  58   8  41  33  34
-  6   7  54  50  51   7
-
-PortalEdgeIntersectAtEdge 0..5
-  1   3  18  19  36 636
-  0   2   4   5 
-  1   3  18  33  46
-  0   2   4   5  22  24  31  33  36  37  40  41
-  1   3  18  19  20  21  25  31  42  45 988
-  1   3  19  21  25  41
+>>> portal_edge = lambda i: bsp.PORTAL_EDGES[i*2:(i+1)*2]
+>>> # PEIV[1], PEIE[1] = [1, 2, 5, 6], [0, 2, 4, 5]
+>>> [v in portal_edge(e) for e, v in zip(PEIE[1], PEIV[1])]
+[True, True, True, True]
 ```
 
-Note how `PEIV[1]` & `PEIV[3]` line up with the edge groups we found earlier by filtering `PortalVerts`
+They do! In fact, they're start / end points on those edges, nice and easy to test for.
+But what about another edge?
 
-> TODO: remark on duplicates in `PEIV` & lack of duplicates in `PEIE`
-> TODO: remark on PEIV & PEIE sets being the same length
-> TODO: investigate relationship, are `PEIV`-`PEIE` pairs significant?
+Testing `zip(PEIE[0], PEIV[0])`, most entries are endpoints, but not the last two.
+Let's investigate further:
 
-> TODO: diagram out all 3 portals, using the all edges
-> -- this should also help us validate PEIV & see the PEIE relationship
+```python
+>>> [
+...     f"{'NY'[v in portal_edge(e)]} {e=}, {v=}"
+...     for e, v in zip(PEIE[0], PEIV[0])]
+["Y e=  1, v= 1",
+ "Y e=  3, v= 4",
+ "Y e= 18, v=36",
+ "Y e= 19, v=35",
+ "N e= 36, v= 4",
+ "N e=636, v=36"]
+```
+
+Checking vertices `4` & `36` are on edges `36` & `636` is a simple `PEIV` lookup:
+
+```python
+>>> bsp.PORTAL_EDGE_INTERSECT_HEADER[36]
+<IntersectHeader (first_set: 46, num_sets: 1)>
+>>> {i for vs in bsp.PORTAL_EDGE_INTERSECT_VERTEX[46:46+1] for i in vs.indices}
+{4, 14, 79, 80, 921}  # 4 spotted
+>>> bsp.PORTAL_EDGE_INTERSECT_HEADER[636]
+<IntersectHeader (first_set: 863, num_sets: 1)>
+>>> {i for vs in bsp.PORTAL_EDGE_INTERSECT_VERTEX[863:863+1] for i in vs.indices}
+{21, 36, 1009, 1663, 1664}  # 36 spotted
+```
+
+That confirms it! `PEIE` & `PEIV` are used to map vertices which share edges.
+
+> `PortalVertexEdge` could have given us the same information.
+> `PEIE` & `PEIV` could likely be reverse engineered from `PVE`.
+> Respawn probably figured faster lookups were worth the data duplication.
