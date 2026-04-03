@@ -3,23 +3,25 @@
 Diagrams & notes from the `respawn.titanfall` branch script:
 
 ```
-       /-> Cells
-      /--> Planes
-Portal --> PortalEdgeReferences   -> PortalEdges -> PortalVertices
-      \--> PortalVertexReferences -> PortalVertices
-```
+              /-> Cell
+             /--> Plane
+Cell -> Portal -> PortalEdgeReference -> PortalEdge -> PortalVertex
+   \         \--> PortalVertexReference -> PortalVertex
+    \-> LeafWaterData -> TextureData (water material)
 
-```
-PortalVertexEdges -> PortalEdgeIntersectHeader -> PortalIntersectEdge   -> PortalEdges
-                                              \-> PortalIntersectVertex -> PortalVertices
-```
+PortalVertexEdge is parallel with PortalVertex
 
-```
-PortalVertexEdges is parallel w/ PortalVertices
-```
+PortalVertexEdge -> PortalEdgeIntersectHeader
+                \-> PortalEdge
 
-```
-PortalEdgeIntersectHeader is parallel w/ PortalEdges (twice as many Edges as Headers)
+PortalEdgeIntersectHeader is parallel w/ PortalEdge
+
+PortalEdgeIntersectHeader -> PortalEdgeIntersectEdge -> PortalEdge
+                         \-> PortalEdgeIntersectVertex -> PortalVertex
+
+PortalEdges are pairs of indices into PortalVertex (start / end points)
+Many PortalVertices can fall along the same edge
+PortalVertexEdge & PortalIntersect lumps document these relationships
 ```
 
 
