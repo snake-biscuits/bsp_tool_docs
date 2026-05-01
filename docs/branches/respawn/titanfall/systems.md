@@ -42,7 +42,8 @@ StaticPropLightProbeIndices & StaticProps are parallel
 
 
 ## Visibility
-### Cells
+### ObjReferences
+
 ```
 CellAABBNodes -> ObjReferences -> Meshes / StaticProp
              \-> CellAABBNodes
@@ -51,39 +52,15 @@ CellAABBNodes -> ObjReferences -> Meshes / StaticProp
 ObjReferences indices start w/ Model[0] (worldspawn) meshes, then GameLump.sprp.props
 ObjReferences & ObjReferenceBounds are parallel
 ```
-```
-           /-> CellBspNode
-CellBspNode -> Cell
-           \-> Plane
-```
-```
-              /-> Cell
-             /--> Plane
-Cell -> Portal -> PortalEdgeReference -> PortalEdge -> PortalVertex
-    \-> LeafWaterData -> TextureData (water material)
-```
+
+### Cells
+
+[cells](cells.md)
+
 
 ### Portals
-```
-PortalEdgeIntersect -> PortalEdge?
-                   \-> PortalVertex
-```
-```
-PortalEdgeIntersectHeader -> ???
-PortalEdgeIntersectHeader is parallel w/ PortalEdge
-```
-```
-PortalEdgeReference is parallel w/ PortalVertexReference (2x PortalEdges)
-```
-```
-PortalVertexEdges -> PortalEdges (list up to 8 edges each PortalVertex is indexed by)
-PortalVertexEdges is Parallel w/ PortalVertices
-```
 
-> Titanfall 2 only seems to care about PortalEdgeIntersectHeader
-> it appears to ignore all other Portal lumps
-> though this is a code branch that seems to be triggered by something about r1 maps
-> might be a flags lump?
+[portals](portals.md)
 
 
 ## Physics
@@ -94,6 +71,11 @@ PortalVertexEdges is Parallel w/ PortalVertices
 > `CM_GRID` holds world bounds & other metadata
 
 ### Lookup Tree
+
+> TODO: CM_Grid / clip_model system page
+> -- each primitive type is basically a system
+> -- Brushes, Tricoll & StaticProps (Titanfall 2 PrimitiveType)
+
 ```
 Grid -> GridCell -> GeoSet -> Primitive
 ```
