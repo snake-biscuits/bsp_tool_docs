@@ -1,48 +1,49 @@
 # Systems
 
-## Models
-```
-             /-> MaterialSort -> TextureData -> TextureDataStringTable -> TextureDataStringData
-Model -> Mesh -> MeshIndex -\-> VertexReservedX -> Vertex
-            \--> .flags (VertexReservedX)     \--> VertexNormal
-             \-> VertexReservedX               \-> .uv
-
-MeshBounds & Mesh are parallel
-```
-
 
 > parallel means entries with the same index are paired across lumps
 > this allows splitting "object" to be used by 2 systems independantly
 > but this does increase the odds of storing redundant data
 
 
-## Shadows
-### Shadow Meshes
-```
-ShadowMesh -> ShadowMeshIndex -> ShadowMeshOpaqueVertex
-          \-> MaterialSort?  \-> ShadowMeshAlphaVertex
-```
+## Lighting
 ### Cascading Shadow Maps
 ```
 CSMAABBNode -> CSMObjReference -> ??? (starts high, out of ObjRefs range)
            \-> CSMAABBNode
 ```
-### Baked Lightmaps
+
+### Lightmaps
 ```
 LightmapHeader -> LIGHTMAP_DATA_SKY
               \-> LIGHTMAP_DATA_REAL_TIME_LIGHTS
 ```
 
-
-## Lightprobes
+### Lightprobes
 ```
 LightProbeTree -?> LightProbeRef -> LightProbe
 StaticPropLightProbeIndices & StaticProps are parallel
 ```
 
+### Shadow Meshes
+```
+ShadowMesh -> ShadowMeshIndex -> ShadowMeshOpaqueVertex
+          \-> MaterialSort?  \-> ShadowMeshAlphaVertex
+```
+
+### Worldlights
+```
+Worldlights
+```
+
+> connects to more lumps in later branches
+
+
 
 ## Visibility
 ### ObjReferences
+
+> might fit better under rendering?
 
 ```
 CellAABBNodes -> ObjReferences -> Meshes / StaticProp
@@ -65,12 +66,14 @@ ObjReferences & ObjReferenceBounds are parallel
 
 ## Physics
 
+### Clip Model
+
+Main Physics Lookup Tree
+
 > `CM_*` is probably short for Clip Model
 > This terminology is used in Quake3's source code
 
 > `CM_GRID` holds world bounds & other metadata
-
-### Lookup Tree
 
 > TODO: CM_Grid / clip_model system page
 > -- each primitive type is basically a system
@@ -114,4 +117,16 @@ TricollHeader -> TricollTriangle -> Vertices
              \-> TricollBevelIndices? -?> ?
 
 TricollBevelStarts is parallel w/ TricollTriangles
+```
+
+
+## Rendering
+### Models
+```
+             /-> MaterialSort -> TextureData -> TextureDataStringTable -> TextureDataStringData
+Model -> Mesh -> MeshIndex -\-> VertexReservedX -> Vertex
+            \--> .flags (VertexReservedX)     \--> VertexNormal
+             \-> VertexReservedX               \-> .uv
+
+MeshBounds & Mesh are parallel
 ```
