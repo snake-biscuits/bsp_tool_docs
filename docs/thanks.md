@@ -57,5 +57,5 @@ search:
 :   Identifying physics model related structs for Titanfall 2
 
 All of the Wiki Editors
-:   Except for the uncited `Id Tech 3 -> Treyarch NGL` on CoDWiki **[citation needed]**
+:   Except for the uncited `Id Tech 3 -> Treyarch NGL` on CoDWiki **(citation needed)**
 
