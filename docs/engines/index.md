@@ -51,7 +51,7 @@ Definitions given here conflict with other sources.
       <a class="node engine-source" href="./source/">Source</a>
     </foreignObject>
     <foreignObject x="256" y="64" width="256" height="32">
-      <a class="node engine-titanfall" href="./titanfall/">Titanfall</a>
+      <a class="node engine-titanfall" href="./resource/">ReSource</a>
     </foreignObject>
     <!-- row 3 -->
     <foreignObject x="96" y="96" width="256" height="32">
