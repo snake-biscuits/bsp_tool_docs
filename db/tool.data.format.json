@@ -3,7 +3,7 @@
   "CoD2Radiant": ["iwmap 4 .map"],
   "CoD4Radiant": ["iwmap 4 .map"],
   "ericw-tools": ["Valve220 .map", "Quake .map", "Quake2 .map"],
-  "Hammer 3.x": [".rmf", ."vmf"],
+  "Hammer 3.x": [".rmf", ".vmf"],
   "Hammer 4.x": [".vmf"],
   "Hammer++": ["Valve220 .map", ".vmf"],
   "J.A.C.K.": [".jmf", ".rmf", ".vmf", "Valve220 .map"],
@@ -22,5 +22,5 @@
   "Stock Worldcraft": [".rmf"],
   "TrenchBroom": [".map", "Valve220 .map"],
   "VHLT": ["Valve220 .map"],
-  "Worldcraft": [".rmf", ."vmf"]
+  "Worldcraft": [".rmf", ".vmf"]
 }
