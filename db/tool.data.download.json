@@ -15,7 +15,8 @@
     "QuakeEd":           "github.com/id-Software/Quake-Tools",
     "QERadiant":         "github.com/id-Software/Quake-2-Tools",
     "TrenchBroom":       "trenchbroom.github.io/",
-    "UberRadiant":       "moddb.com/downloads/stef2-bertools-game-devolopment-kit"
+    "UberRadiant":       "moddb.com/downloads/stef2-bertools-game-devolopment-kit",
+    "WifeRadiant":       "github.com/erysdren/WifeRadiant"
   },
   "Compiler": {
     "ericw-tools":    "github.com/ericwa/ericw-tools",

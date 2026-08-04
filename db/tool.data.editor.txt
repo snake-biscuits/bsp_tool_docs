@@ -15,4 +15,5 @@ QERadiant
 QuakeEd
 TrenchBroom
 UberRadiant
+WifeRadiant
 Worldcraft

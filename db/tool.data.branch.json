@@ -12,6 +12,7 @@
       "GtkRadiant",
       "Hammer 3.x",
       "TrenchBroom",
+      "WifeRadiant",
       "Worldcraft"
     ],
     "Compilers": ["Stock Worldcraft"],
@@ -124,7 +125,7 @@
     "Compilers": ["Stock Hammer"]
   },
   "troika.vampire": {
-    "Editors": ["Hammer", "Hammer++"],
+    "Editors": ["Hammer", "Hammer++", "WifeRadiant"],
     "Compilers": ["Stock Hammer"]
   },
   "valve.alien_swarm": {
@@ -136,6 +137,7 @@
       "GtkRadiant",
       "Hammer 3.x",
       "TrenchBroom",
+      "WifeRadiant",
       "Worldcraft"
     ],
     "Compilers": ["Stock Worldcraft"]
@@ -149,11 +151,11 @@
     "Compilers": ["Stock Hammer"]
   },
   "valve.sdk_2013": {
-    "Editors": ["Hammer", "Hammer++"],
+    "Editors": ["Hammer", "Hammer++", "WifeRadiant"],
     "Compilers": ["Stock Hammer", "Slammin' Tools"]
   },
   "valve.source": {
-    "Editors": ["Hammer", "Hammer++"],
+    "Editors": ["Hammer", "Hammer++", "WifeRadiant"],
     "Compilers": ["Stock Hammer"]
   },
   "valve.source_filmmaker": {

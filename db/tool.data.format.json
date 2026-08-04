@@ -23,5 +23,6 @@
   "Stock Worldcraft": [".rmf"],
   "TrenchBroom": [".map", "Valve220 .map"],
   "VHLT": ["Valve220 .map"],
+  "WifeRadiant": ["Valve200 .map", ".vmf"],
   "Worldcraft": [".rmf", ".vmf"]
 }
