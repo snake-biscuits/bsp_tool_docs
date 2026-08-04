@@ -3,6 +3,7 @@
   "CoD2Radiant": ["iwmap 4 .map"],
   "CoD4Radiant": ["iwmap 4 .map"],
   "ericw-tools": ["Valve220 .map", "Quake .map", "Quake2 .map"],
+  "Gearcraft": [".rmf", "Valve220 .map", ".gbx"],
   "Hammer 3.x": [".rmf", ".vmf"],
   "Hammer 4.x": [".vmf"],
   "Hammer++": ["Valve220 .map", ".vmf"],
