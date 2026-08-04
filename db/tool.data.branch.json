@@ -11,6 +11,7 @@
     "Editors": [
       "GtkRadiant",
       "Hammer 3.x",
+      "NextBroom",
       "TrenchBroom",
       "WifeRadiant",
       "Worldcraft"
@@ -23,27 +24,29 @@
     "Compilers": ["Stock Gearcraft"]
   },
   "id_software.qbism": {
-    "Editors": ["Trenchbroom"],
+    "Editors": ["NextBroom", "Trenchbroom"],
     "Compilers": ["qbism/q2tools-220"]
   },
   "id_software.qfusion": {
     "Editors": [
       "GtkRadiant",
+      "NextBroom",
       "Trenchbroom"
     ],
     "Compilers": ["Stock Radiant"]
   },
   "id_software.quake": {
-    "Editors": ["Trenchbroom"],
+    "Editors": ["NextBroom", "Trenchbroom"],
     "Compilers": ["ericw-tools"]
   },
   "id_software.quake2": {
-    "Editors": ["Trenchbroom"],
+    "Editors": ["NextBroom", "Trenchbroom"],
     "Compilers": ["q2tools-220"]
   },
   "id_software.quake3": {
     "Editors": [
       "GtkRadiant",
+      "NextBroom",
       "Trenchbroom"
     ],
     "Compilers": [
@@ -52,7 +55,7 @@
     ]
   },
   "id_software.remake_quake_old": {
-    "Editors": ["Trenchbroom"],
+    "Editors": ["NextBroom", "Trenchbroom"],
     "Compilers": ["ericw-tools"]
   },
   "infinity_ward.call_of_duty1": {
@@ -86,7 +89,7 @@
     "Compilers": ["Stock Hammer"]
   },
   "raven.hexen2": {
-    "Editors": ["TrenchBroom"],
+    "Editors": ["NextBroom", "TrenchBroom"],
     "Compilers": ["ericw-tools"]
   },
   "raven.soldier_of_fortune2": {
@@ -136,6 +139,7 @@
     "Editors": [
       "GtkRadiant",
       "Hammer 3.x",
+      "NextBroom",
       "TrenchBroom",
       "WifeRadiant",
       "Worldcraft"

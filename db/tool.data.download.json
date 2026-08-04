@@ -12,6 +12,7 @@
     "MRVN-Radiant":      "github.com/MRVN-Radiant/MRVN-Radiant",
     "NetRadiant":        "netradiant.gitlab.io/page/download/",
     "netradiant-custom": "github.com/Garux/netradiant-custom",
+    "NextBroom":         "codeberg.org/NextBroomTeam/NextBroom",
     "QuakeEd":           "github.com/id-Software/Quake-Tools",
     "QERadiant":         "github.com/id-Software/Quake-2-Tools",
     "TrenchBroom":       "trenchbroom.github.io/",

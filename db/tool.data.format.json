@@ -9,6 +9,7 @@
   "Hammer++": ["Valve220 .map", ".vmf"],
   "J.A.C.K.": [".jmf", ".rmf", ".vmf", "Valve220 .map"],
   "MRVN-Radiant": ["Quake3 .map", "Valve220 .map"],
+  "NextBroom": [".map", "Valve220 .map"],
   "QERadiant": ["Quake2 .map"],
   "QuakeEd": ["Quake .map"],
   "q2tools-220": ["Valve220 .map"],

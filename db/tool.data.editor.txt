@@ -11,6 +11,7 @@ MoHRadiant
 MRVN-Radiant
 Netradiant
 netradiant-custom
+NextBroom
 QERadiant
 QuakeEd
 TrenchBroom
