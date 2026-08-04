@@ -15,6 +15,14 @@ CREATE TABLE IF NOT EXISTS LevelEditor (
 );
 
 
+CREATE TABLE IF NOT EXISTS LevelEditorFork (
+    base  VARCHAR  NOT NULL,
+    fork  VARCHAR  NOT NULL,
+    FOREIGN KEY base REFERENCES LevelEditor(rowid),
+    FOREIGN KEY fork REFERENCES LevelEditor(rowid)
+);
+
+
 CREATE TABLE IF NOT EXISTS Compiler (
     name  VARCHAR  NOT NULL
 );

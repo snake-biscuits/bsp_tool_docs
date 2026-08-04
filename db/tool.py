@@ -21,6 +21,8 @@ def generate():
     # tables.append("LevelEditor")
     ...
 
+    # tables.append("LevelEditorFork")
+
     # tables.append("Compiler")
     ...
 

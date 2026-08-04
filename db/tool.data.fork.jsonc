@@ -1,0 +1,14 @@
+{
+  "CoDRadiant": ["CoD2Radiant"],
+  "CoD2Radiant": ["CoD4Radiant"],
+  "GtkRadiant": [
+    "DarkRadiant",
+    "NetRadiant"],
+  "Hammer": ["Hammer++"],
+  "NetRadiant": ["NextRadiant-Custom"],
+  "NetRadiant-Custom": [
+    "MRVN-Radiant",
+    "WifeRadiant"],
+  "TrenchBroom": ["NextBroom"],
+  "Worldcraft": ["Gearcraft"]
+}
