@@ -9,8 +9,8 @@ Hammer++
 IONRadiant
 MoHRadiant
 MRVN-Radiant
-Netradiant
-netradiant-custom
+NetRadiant
+NetRadiant-Custom
 NextBroom
 QERadiant
 QuakeEd
