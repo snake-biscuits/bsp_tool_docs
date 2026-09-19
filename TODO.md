@@ -1,3 +1,5 @@
+# TODO list
+
 ## load tables from .csv
 this is a feature of the Material theme
 could be a handy way of decoupling the db output from general prose (`.md` files)
@@ -9,6 +11,8 @@ could be a handy way of decoupling the db output from general prose (`.md` files
 ### Snippets extention?
 Material for MkDocs > References > Tooltips > [Adding a glossary](https://squidfunk.github.io/mkdocs-material/reference/tooltips/?h=hover#adding-a-glossary)
 [pymdownx.snippets](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/)
+
+> NOTE: PyMdown extensions comes with Properdocs
 
 ### useful cards to have
  * timeline snippets
@@ -54,3 +58,25 @@ generate `.csv` tables from `db` for:
    - lumps indexed
    - lumps indexed by
    - system(s) containing this lump
+
+
+## Systems Pages
+ - [ ] Relocate `branches.respawn.titanfall` system pages to `engines.resource.systems`
+ - [ ] Include Engine links in each branch page
+ - [ ] branches folder can be entirely generated docs
+   - [ ] game lists
+   - [ ] lump classes
+
+
+## Miscellaneous
+ - [ ] Fixup broken auto-capitalisation (lookup table?)
+   - [ ] `Id software` -> `Id Software`
+   - [ ] `Resource` -> `ReSource`
+ - [ ] Other docs / wikis
+   - [ ] `breki` will handle ArchiveClasses in future
+   - [ ] `bite` will handle texture & material formats
+   - [ ] `ass` will handle models (including bsp export)
+ - [ ] GitHub discussions archive
+   - [ ] good writing reference
+   - [ ] cite external sources (Twitter, VDC, GDC etc.)
+   - [ ] screenshots & video
