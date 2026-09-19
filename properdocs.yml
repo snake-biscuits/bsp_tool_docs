@@ -3,7 +3,7 @@ site_url: https://snake-biscuits.github.io/bsp_tool_docs
 repo_url: https://github.com/snake-biscuits/bsp_tool
 
 theme:
-  name: material
+  name: materialx
   palette:
     scheme: slate
     primary: orange
