@@ -41,6 +41,9 @@ def generate():
     # tool.data.format.json
     # tables.append("ToolFileFormat")
     ...
+    # TODO: Valve220, 350 & 400 footnotes
+    # -- HL2 beta for ~350-400; has displacements
+    # -- source-sdk-2013:src/utils/vbsp/map.cpp:ParseDispInfoChunk
 
     # tables.append("LevelEditorFormat")
     ...
