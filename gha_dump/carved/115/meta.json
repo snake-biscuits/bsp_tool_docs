@@ -1,0 +1,19 @@
+{
+  "number": 115,
+  "title": "Games that you'd think have `.bsp`s, but don't",
+  "createdAt": "2023-07-19T05:55:00Z",
+  "updatedAt": "2023-07-20T11:24:34Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Show and tell"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "trivia"
+      }
+    ]
+  }
+}

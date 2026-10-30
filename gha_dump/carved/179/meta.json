@@ -1,0 +1,31 @@
+{
+  "number": 179,
+  "title": "Call of Duty Brushes",
+  "createdAt": "2024-02-19T05:09:08Z",
+  "updatedAt": "2024-02-22T23:56:29Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Active"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "infinity_ward.call_of_duty1_demo"
+      },
+      {
+        "name": "infinity_ward.call_of_duty1"
+      },
+      {
+        "name": "infinity_ward.call_of_duty2"
+      },
+      {
+        "name": "infinity_ward.modern_warfare"
+      },
+      {
+        "name": "IW Engine"
+      }
+    ]
+  }
+}

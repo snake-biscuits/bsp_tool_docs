@@ -1,0 +1,31 @@
+{
+  "number": 137,
+  "title": "[Apex Archive] eliminating duplicates to save on storage",
+  "createdAt": "2023-08-13T19:15:03Z",
+  "updatedAt": "2024-02-03T00:52:57Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Guides"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "respawn.apex_legends"
+      },
+      {
+        "name": "respawn.apex_legends51"
+      },
+      {
+        "name": "Apex Archive"
+      },
+      {
+        "name": "respawn.apex_legends50"
+      },
+      {
+        "name": "respawn.apex_legends52"
+      }
+    ]
+  }
+}

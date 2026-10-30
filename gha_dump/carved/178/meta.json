@@ -1,0 +1,19 @@
+{
+  "number": 178,
+  "title": "Daikatana PlaneFaces off by one",
+  "createdAt": "2024-02-16T07:08:27Z",
+  "updatedAt": "2024-02-16T07:09:20Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Active"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "ion_storm.daikatana"
+      }
+    ]
+  }
+}

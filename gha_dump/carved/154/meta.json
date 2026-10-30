@@ -1,0 +1,22 @@
+{
+  "number": 154,
+  "title": "Compiling `valve.orange_box_x360` maps",
+  "createdAt": "2023-10-20T05:11:36Z",
+  "updatedAt": "2024-02-04T04:35:26Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Guides"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "valve.orange_box_x360"
+      },
+      {
+        "name": "Xbox360"
+      }
+    ]
+  }
+}

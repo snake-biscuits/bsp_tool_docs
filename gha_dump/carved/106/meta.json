@@ -1,0 +1,28 @@
+{
+  "number": 106,
+  "title": "TriColl",
+  "createdAt": "2023-05-23T04:17:01Z",
+  "updatedAt": "2023-06-20T18:43:45Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Active"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "help wanted"
+      },
+      {
+        "name": "respawn.titanfall"
+      },
+      {
+        "name": "respawn.titanfall2"
+      },
+      {
+        "name": "physics"
+      }
+    ]
+  }
+}

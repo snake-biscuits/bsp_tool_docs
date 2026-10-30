@@ -1,0 +1,22 @@
+{
+  "number": 82,
+  "title": "The heart of BSP & A brief history of `VIS`",
+  "createdAt": "2023-02-02T10:59:29Z",
+  "updatedAt": "2023-02-02T12:43:07Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "General"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "documentation"
+      },
+      {
+        "name": "trivia"
+      }
+    ]
+  }
+}

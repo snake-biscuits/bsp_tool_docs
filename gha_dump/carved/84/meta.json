@@ -1,0 +1,28 @@
+{
+  "number": 84,
+  "title": "`RespawnBsp` Cells & Portals",
+  "createdAt": "2023-02-02T12:51:13Z",
+  "updatedAt": "2026-05-15T05:34:19Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Active"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "respawn.titanfall"
+      },
+      {
+        "name": "respawn.titanfall2"
+      },
+      {
+        "name": "respawn.apex_legends"
+      },
+      {
+        "name": "visibility"
+      }
+    ]
+  }
+}

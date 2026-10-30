@@ -1,0 +1,19 @@
+{
+  "number": 108,
+  "title": "Edge Case maps",
+  "createdAt": "2023-06-11T12:58:50Z",
+  "updatedAt": "2023-10-19T08:37:07Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Show and tell"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "trivia"
+      }
+    ]
+  }
+}

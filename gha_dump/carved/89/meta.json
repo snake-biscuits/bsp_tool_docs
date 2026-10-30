@@ -1,0 +1,31 @@
+{
+  "number": 89,
+  "title": "Titanfall Engine lightmaps",
+  "createdAt": "2023-03-29T13:47:14Z",
+  "updatedAt": "2024-03-22T03:50:06Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Active"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "respawn.titanfall"
+      },
+      {
+        "name": "respawn.titanfall2"
+      },
+      {
+        "name": "respawn.apex_legends"
+      },
+      {
+        "name": "lighting"
+      },
+      {
+        "name": "Titanfall Engine"
+      }
+    ]
+  }
+}

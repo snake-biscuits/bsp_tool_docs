@@ -1,0 +1,22 @@
+{
+  "number": 111,
+  "title": "Apex Legends `BVHLeafData`",
+  "createdAt": "2023-06-27T00:17:38Z",
+  "updatedAt": "2023-11-20T00:17:04Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Active"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "respawn.apex_legends"
+      },
+      {
+        "name": "physics"
+      }
+    ]
+  }
+}

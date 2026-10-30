@@ -1,0 +1,25 @@
+{
+  "number": 86,
+  "title": "Straddle groups",
+  "createdAt": "2023-02-08T21:29:01Z",
+  "updatedAt": "2024-10-08T06:53:03Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Completed"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "respawn.titanfall"
+      },
+      {
+        "name": "respawn.titanfall2"
+      },
+      {
+        "name": "physics"
+      }
+    ]
+  }
+}

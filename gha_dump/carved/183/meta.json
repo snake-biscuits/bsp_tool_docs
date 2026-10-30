@@ -1,0 +1,22 @@
+{
+  "number": 183,
+  "title": "CS:O 2 (2018) Lightmaps",
+  "createdAt": "2024-03-22T02:27:35Z",
+  "updatedAt": "2025-12-22T11:23:40Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Active"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "lighting"
+      },
+      {
+        "name": "nexon.cso2_2018"
+      }
+    ]
+  }
+}

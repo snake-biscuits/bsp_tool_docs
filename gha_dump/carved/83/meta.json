@@ -1,0 +1,28 @@
+{
+  "number": 83,
+  "title": "Recovering Cursed .bsp files",
+  "createdAt": "2022-10-18T12:38:42Z",
+  "updatedAt": "2023-02-02T12:47:11Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Ideas"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "help wanted"
+      },
+      {
+        "name": "question"
+      },
+      {
+        "name": "slow burn"
+      },
+      {
+        "name": "MegaTest"
+      }
+    ]
+  }
+}

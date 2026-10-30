@@ -1,0 +1,19 @@
+{
+  "number": 149,
+  "title": "Dear Esther Dev working on VtM:B 2",
+  "createdAt": "2023-09-21T10:50:14Z",
+  "updatedAt": "2023-09-21T10:50:14Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Show and tell"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "trivia"
+      }
+    ]
+  }
+}

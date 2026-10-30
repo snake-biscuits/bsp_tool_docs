@@ -1,0 +1,22 @@
+{
+  "number": 104,
+  "title": "Related files that aren't bsp data",
+  "createdAt": "2023-05-19T10:07:19Z",
+  "updatedAt": "2023-07-23T04:08:58Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "General"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "enhancement"
+      },
+      {
+        "name": "documentation"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "number": 177,
+  "title": "Game History Preservation Links",
+  "createdAt": "2024-02-16T05:31:44Z",
+  "updatedAt": "2024-11-29T10:49:20Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Show and tell"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "trivia"
+      }
+    ]
+  }
+}

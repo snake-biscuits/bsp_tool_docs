@@ -1,0 +1,28 @@
+{
+  "number": 78,
+  "title": "RespawnBsp History & Progress Reports",
+  "createdAt": "2023-01-13T02:23:35Z",
+  "updatedAt": "2024-02-19T07:43:13Z",
+  "author": {
+    "login": "snake-biscuits"
+  },
+  "category": {
+    "name": "Show and tell"
+  },
+  "labels": {
+    "nodes": [
+      {
+        "name": "respawn.titanfall"
+      },
+      {
+        "name": "respawn.titanfall2"
+      },
+      {
+        "name": "respawn.apex_legends"
+      },
+      {
+        "name": "Titanfall Engine"
+      }
+    ]
+  }
+}
