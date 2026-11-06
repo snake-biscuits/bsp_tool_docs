@@ -1,18 +1,20 @@
 __all__ = [
     "utils",
-    "branches", "bsps", "engines"]
+    "branches", "bsps", "engines", "timeline"]
 
 from . import utils
 
 from . import branches
 from . import bsps
 from . import engines
+from . import timeline
 
 
 modules = [
     branches,
     bsps,
-    engines]
+    engines,
+    timeline]
 
 
 def build():
