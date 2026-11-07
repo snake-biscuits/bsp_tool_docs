@@ -1,11 +1,12 @@
 __all__ = [
     "utils",
-    "branches", "bsps", "engines", "timeline"]
+    "branches", "bsps", "calendar", "engines", "timeline"]
 
 from . import utils
 
 from . import branches
 from . import bsps
+from . import calendar
 from . import engines
 from . import timeline
 
@@ -13,6 +14,7 @@ from . import timeline
 modules = [
     branches,
     bsps,
+    calendar,
     engines,
     timeline]
 
