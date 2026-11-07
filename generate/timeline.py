@@ -16,7 +16,7 @@ def generate_all():
     forks = query_forks(db)
     raw_svg = generate_poster(releases, colours, forks)
 
-    with open("./timeline.svg", "w") as svg_file:
+    with open("docs/img/timeline.svg", "w") as svg_file:
         svg_file.write("\n".join(raw_svg))
 
 
@@ -172,7 +172,11 @@ def x_offset_for(branch: str = None):
 
 
 def y_for(date: datetime.date) -> int:
-    return (date.year - 1995) * 72 + date.month * 6
+    # return (date.year - 1995) * 72 + date.month * 6
+    y_year = (date.year - 1995) * 72
+    y_month = date.month * 6
+    y_day = date.day // 5
+    return y_year + y_month + y_day
 
 
 def generate_poster(releases, colours, forks) -> List[str]:
@@ -185,10 +189,11 @@ def generate_poster(releases, colours, forks) -> List[str]:
     for year in range(first_year, 2026+1):
         y = y_for(datetime.date(year, 1, 1))
         svg_years.extend([
-            f'<text x="48" y="{y-4}" fill="#CCC">{year}</text>',
-            f'<line x1="6" y1="{y}" x2="96" y2="{y}" stroke="#CCC" />'])
+            f'<text x="14" y="{y-4}" fill="#6577">{year}</text>',
+            f'<text x="712" y="{y-4}" fill="#6577">{year}</text>',
+            f'<line x1="6" y1="{y}" x2="762" y2="{y}" stroke="#6577" />'])
         svg_years.extend([
-            f'<line x1="12" y1="{y+i*6}" x2="36" y2="{y+i*6}" stroke="#999" />'
+            f'<line x1="64" y1="{y+i*6}" x2="704" y2="{y+i*6}" stroke="#8797" />'
             for i in range(1, 12)])
 
     # branch lines
@@ -205,9 +210,9 @@ def generate_poster(releases, colours, forks) -> List[str]:
         svg_branch.append(
             f'<rect x="{x}" y="{top}" rx="2" ry="2" width="3" height="{height}" fill="#{colour}"/>')
 
+    # developer columns
     svg_dev = list()
     for developer, release_d in group_developers(releases).items():
-        # developer columns
         dates = sorted(release_d)
         first = dates[0]
         last = dates[-1]
@@ -217,7 +222,7 @@ def generate_poster(releases, colours, forks) -> List[str]:
         # TODO: dev colour
         svg_dev.extend([
             # f'<text x="{x}" y="{top-18}" fill="#CCC" text-anchor="middle">{developer}</text>',
-            f'<rect x="{x-32}" y="{top-12}" rx="20" ry="20" width="64" height="{height+24}" fill="#333"/>'])
+            f'<rect x="{x-32}" y="{top-16}" rx="32" ry="32" width="64" height="{height+32}" fill="#657A" />'])
 
     firsts = set()
     # TODO: branch-fork connecting lines/curves
@@ -256,7 +261,7 @@ def generate_poster(releases, colours, forks) -> List[str]:
         f'<svg width="{width}" height="{height}" viewBox="{viewbox}"',
         'version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">'
         # background colour
-        f'<rect x="0" y="0" width="{width}" height="{height}" fill="#222" />'
+        f'<rect x="0" y="0" width="{width}" height="{height}" fill="#CAB" />'
     ]
     svg_footer = ["</svg>"]
 
