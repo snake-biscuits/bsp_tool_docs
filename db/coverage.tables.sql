@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS LumpClass (
     name      VARCHAR  NOT NULL,
     line      INTEGER,  -- NULL for most x360 classes
     coverage  FLOAT    NOT NULL,  -- [0.0 - 100.0]
-    FOREIGN KEY script REFERENCES Script(rowid)
+    FOREIGN KEY (script) REFERENCES Script(rowid)
 );
 
 
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS BranchLumpClass (
     lump     INTEGER  NOT NULL,
     class    INTEGER,  -- NULL if unmapped
     version  INTEGER,  -- NULL for quake_based, NOT NULL for source_based
-    FOREIGN KEY branch REFERENCES Branch(rowid),
-    FOREIGN KEY lump REFERENCES Lump(rowid),
-    FOREIGN KEY class REFERENCES LumpClass(rowid)
+    FOREIGN KEY (branch) REFERENCES Branch(rowid),
+    FOREIGN KEY (lump) REFERENCES Lump(rowid),
+    FOREIGN KEY (class) REFERENCES LumpClass(rowid)
 );

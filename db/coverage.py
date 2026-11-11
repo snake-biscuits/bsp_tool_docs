@@ -10,11 +10,11 @@ import branch as branch_db
 import common
 
 import bsp_tool
-from bsp_tool.branches import base
+from bsp_tool import core
 
 
 def short_script_name(module: ModuleType) -> str:
-    split_module = module.__name__.split(".")
+    split_module = module.split(".")
     if split_module[0] == "bsp_tool" and split_module[1] in ("branches", "extensions"):
         return ".".join(split_module[2:])
     else:
@@ -24,30 +24,34 @@ def short_script_name(module: ModuleType) -> str:
 def calculate_coverage(LumpClass: object) -> (int, int):  # %age is (2nd - 1st) / 2nd
     """yields (num_unknown_bits, total_bits)"""
     # NOTE: SpecialLumpClasses are tested against a table (import from .json)
-    if not issubclass(LumpClass, (base.BitField, base.MappedArray, base.Struct)):
-        raise RuntimeError(f"cannot process '{LumpClass}'")
+    if not issubclass(LumpClass, (core.BitField, core.MappedArray, core.Struct)):
+        if LumpClass == bsp_tool.branches.id_software.quake.Edge:
+            return (100, 100)
+        else:
+            raise RuntimeError(f"cannot process '{LumpClass}'")
     lump_class = LumpClass()
-    if issubclass(LumpClass, base.Struct):
+    if issubclass(LumpClass, core.Struct):
         return calculate_coverage_Struct(lump_class)
-    elif issubclass(LumpClass, base.MappedArray):
+    elif issubclass(LumpClass, core.MappedArray):
         return calculate_coverage_MappedArray(lump_class)
-    elif issubclass(LumpClass, base.BitField):
+    elif issubclass(LumpClass, core.BitField):
         return calculate_coverage_BitField(lump_class)
 
 
 # TODO: catch _bitfields = {"attr.child": ...}
-def calculate_coverage_Struct(lump_class: base.Struct) -> (int, int):
+def calculate_coverage_Struct(lump_class: core.Struct) -> (int, int):
     total_bits = len(lump_class.as_bytes()) * 8
     num_unknown_bits = 0
     # NOTE: bits, not bytes; we care about bitfields
-    format_ = base.split_format(lump_class._format)
+    format_ = core.common.split_format(lump_class._format)
     attr_start = 0
     for attr in lump_class.__slots__:
         child = getattr(lump_class, attr)
         attr_length = 1
         if attr in lump_class._arrays:
-            attr_length = base.mapping_length(lump_class._arrays[attr])
+            attr_length = core.mapped_array.mapping_length(lump_class._arrays[attr])
             num_unknown_bits += calculate_coverage_MappedArray(child)[0]
+            # ^ BUG: breaks on class override (e.g. vec3)
         elif attr in lump_class._bitfields:
             num_unknown_bits += calculate_coverage_BitField(child)[0]
         # NOTE: it's possible to have an "unknown" attr w/ non-unknown children
@@ -59,18 +63,18 @@ def calculate_coverage_Struct(lump_class: base.Struct) -> (int, int):
     return (num_unknown_bits, total_bits)
 
 
-def calculate_coverage_MappedArray(lump_class: base.MappedArray) -> (int, int):
+def calculate_coverage_MappedArray(lump_class: core.MappedArray) -> (int, int):
     # NOTE: we recieve an instance, so attrs should be correct
     total_bits = len(lump_class.as_bytes()) * 8
     num_unknown_bits = 0
     # NOTE: bits, not bytes; we care about bitfields
-    format_ = base.split_format(lump_class._format)
+    format_ = core.common.split_format(lump_class._format)
     attr_start = 0
     for attr in lump_class._mapping:
         attr_length = 1
         if isinstance(lump_class._mapping, dict):  # nested mappings
             child_mapping = lump_class._mapping[attr]
-            attr_length = base.mapping_length(child_mapping)
+            attr_length = core.mapped_array.mapping_length(child_mapping)
             if child_mapping is not None and isinstance(child_mapping, (list, dict)):
                 child = getattr(lump_class, attr)
                 num_unknown_bits += calculate_coverage_MappedArray(child)[0]
@@ -85,7 +89,7 @@ def calculate_coverage_MappedArray(lump_class: base.MappedArray) -> (int, int):
     return (num_unknown_bits, total_bits)
 
 
-def calculate_coverage_BitField(LumpClass: base.BitField) -> (int, int):
+def calculate_coverage_BitField(LumpClass: core.BitField) -> (int, int):
     total_bits = len(LumpClass().as_bytes()) * 8
     num_unknown_bits = sum(
         num_bits
@@ -130,19 +134,35 @@ def register_classes(db: sqlite3.Connection, classes: List[object]) -> Dict[obje
 
 
 def process_quake_branch(db: sqlite3.Connection, branch: ModuleType):
-    lump_classes = {**branch.BASIC_LUMP_CLASSES, **branch.LUMP_CLASSES, **branch.SPECIAL_LUMP_CLASSES}
-    lump_classes = {L: c for L, c in lump_classes.items() if hasattr(branch.LUMP, L)}
+    lump_classes = {
+        **branch.BASIC_LUMP_CLASSES,
+        **branch.LUMP_CLASSES,
+        **branch.SPECIAL_LUMP_CLASSES}
+    lump_classes = {  # filter
+        lump: cls
+        for lump, cls in lump_classes.items()
+        if hasattr(branch.LUMP, lump)}
 
     lumps = [x[0] for x in db.execute("SELECT name FROM Lump").fetchall()]
-    new_lumps = [L.name for L in branch.LUMP if L.name not in lumps]
+    new_lumps = [
+        (L.name,)
+        for L in branch.LUMP
+        if L.name not in lumps]
     db.executemany("INSERT INTO Lump(name) VALUES(?)", new_lumps)
     lumps.extend(new_lumps)
 
-    classes = sorted(set(lump_classes.values()), key=lambda c: (c.__module__.__name__, c.__name__))
-    classes = register_classes(classes)
+    classes = sorted(
+        set(lump_classes.values()),
+        key=lambda c: (c.__module__, c.__name__))
+    classes = register_classes(db, classes)
+
     branch_index = branch_db.module_index(db, branch)
-    blc = [(branch_index, lumps.index(L), classes[c]) for L, c in lump_classes.items()]
-    db.executemany("INSERT INTO BranchLumpClass(branch, lump, class) VALUES(?, ?, ?)", blc)
+    blc = [
+        (branch_index, lumps.index(lump), classes[cls])
+        for lump, cls in lump_classes.items()]
+    db.executemany("""
+        INSERT INTO BranchLumpClass(branch, lump, class)
+        VALUES(?, ?, ?)""", blc)
 
 
 def process_source_branch(db: sqlite3.Connection, branch: ModuleType):
@@ -188,7 +208,6 @@ def generate():
     branch_db.load_into(db)
     common.run_script(db, "coverage.tables.sql")
 
-    raise NotImplementedError()
     tables = list()
 
     # tables.append("Lump")
@@ -199,7 +218,6 @@ def generate():
         process_quake_branch(db, branch)
     for branch in bsp_tool.branches.source_based:
         process_source_branch(db, branch)
-    ...
 
     # tables.append("BranchCoverage")  # VIEW
     common.tables_to_file(db, "coverage.data.sql", tables)
