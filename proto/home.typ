@@ -31,87 +31,116 @@
 == Branches
 
 // TODO: MediaWiki style category box
-#block(fill: rgb("#DDD"), inset: .75em)[
+#block(fill: rgb("#EEE"), inset: .75em)[
+#align(center)[
 #columns(3)[
-  == idTech
+== GoldSrc
+=== gearbox
+blue_shift
+nightfire
+=== valve
+goldsrc
 
-  === Quake
-  - hexen2
-  - quake
-  - remake_quake
+== Source
+=== ace_team
+zeno_clash
+=== arkane
+dark_messiah_mp
+dark_messiah_sp
+=== loiste
+infra
+=== nexon
+cso2
+cso2_2018
+vindictus
+vindictus69
+=== outerlight
+outerlight
+=== strata
+strata
+=== troika
+vampire
+=== utoplanet
+merubasu
+=== valve
+alien_swarm
+left4dead
+left4dead2
+orange_box
+orange_box_x360
+sdk_2013
+sdk_2013_x360
+source
+source_filmmaker
 
-  === Quake 2
-  - daikatana
-  - qbism
-  - quake2
+#colbreak()
 
-  === Quake 3
-  - fakk2
-  - mohaa
-  - mohaa_bt
-  - mohaa_demo
-  - qfusion
-  - quake3
-  - star_trek_elite_force2
-  - star_trek_elite_force2_demo
+== Quake
+=== id_software
+quake
+quake64
+=== raven
+hexen2
 
-  #colbreak()
+== ReMakeQuake
+=== id_software
+remake_quake
+remake_quake_old
 
-  == IW
+== Quake 2
+=== id_software
+quake2
+qbism
+=== ion_storm
+daikatana
 
-  === 1.0
-  - call_of_duty_demo
-  - call_of_duty
+== Id Tech 2
+=== ritual
+sin
 
-  === 2.0
-  - call_of_duty2
+== Id Tech 3
+=== id_software
+qfusion
+quake3
+=== raven
+soldier_of_fortune
+soldier_of_fortune2
+=== ritual
+fakk2
+mohaa
+mohaa_bt
+mohaa_demo
+star_trek_elite_force2
+star_trek_elite_force2_demo
 
-  === 3.0
-  - modern_warfare
+#colbreak()
 
-  == ReSource
+== IW 1.0
+=== infinity_ward
+call_of_duty1
+call_of_duty1_demo
 
-  === Titanfall
-  - titanfall
-  - titanfall_x360
+== IW 2.0
+=== infinity_ward
+call_of_duty2
 
-  === Titanfall 2
-  - titanfall2
+== IW 3.0
+=== infinity_ward
+modern_warfare
 
-  === Apex Legends
-  - apex_legends
-  - apex_legends50
-  - apex_legends51
-  - apex_legends52
+== Titanfall
+=== respawn
+apex_legends
+apex_legends50
+apex_legends51
+apex_legends52
+titanfall
+titanfall2
+titanfall_x360
 
-  #colbreak()
-
-  == Valve
-
-  === GoldSrc
-  - goldsrc
-  - blue_shift
-
-  === Source
-  - orange_box
-  - orange_box_x360
-  - sdk_2013
-  - sdk_2013_x360
-  - source
-  - source_xbox
-
-  == Other
-  === Arkane
-  - dark_messiah_mp
-  - dark_messiah_sp
-
-  === Strata
-  - strata
-
-  === Troika
-  - vampire
-
-  === Utoplanet
-  - merubasu
+== Genesis3D
+=== wild_tangent
+genesis3d
+]
 ]
 ]
