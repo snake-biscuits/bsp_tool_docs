@@ -17,7 +17,7 @@ def generate_all():
             outfile.write('</div>')
 
 
-def forks_svg(db, engine):
+def forks_svg(db, engine: str) -> str:
     # TODO: mermaid output for debugging
     # TODO: track engine of each branch collected
     forks = db.execute(f"""
@@ -31,9 +31,10 @@ def forks_svg(db, engine):
         WHERE E.name == '{engine}'
         """).fetchall()
 
-    # TODO: place each branch in 2d space
-    # -- chronological flow from left to right
-    # -- need to know which branch is first (can't be a fork)
+    # TODO: sort forks chronologically
+
+    # arrange nodes
+    # TODO: borrow column hints from timeline
     nodes = dict()
     node_forks = collections.defaultdict(set)
     for base_dev, base_branch, fork_dev, fork_branch in forks:
@@ -44,10 +45,11 @@ def forks_svg(db, engine):
             nodes[base] = (x, y)
         else:
             x, y = nodes[base]
-        x += 128
-        y += 24 * len(node_forks[base])
+        # x += 128
         # text_width = 8 * (len(base_dev) + 1 + len(base_branch))
-        # gap = text_width + 48
+        text_width = 8 * len(base_branch)
+        x += text_width + 64
+        y += 24 * len(node_forks[base])
         nodes[fork] = (x, y)
         node_forks[base].add(fork)
 
@@ -67,18 +69,21 @@ def forks_svg(db, engine):
             y += 24
 
     # construct svg
-
     width = max(x for x, y in nodes.values()) + 128
-    height = max(y for x, y in nodes.values()) + 24
+    height = max(y for x, y in nodes.values()) + 32
     width = max(256, width)
     height = max(64, height)
     bounds = f"0 0 {width} {height}"
 
-    def style_for(branch):
+    def style_for(branch: str) -> str:
         return f"branch-{branch.replace('_', '-')}"
 
+    def width_for(dev: str, branch: str) -> int:
+        # return 8 * (len(dev) + 1 + len(branch))
+        return 8 * (len(branch) + 3)
+
     node_links = [
-        (nodes[base], nodes[fork])
+        ((nodes[base][0] + width_for(*base), nodes[base][1]), nodes[fork])
         for base in node_forks
         for fork in node_forks[base]]
 
@@ -86,18 +91,13 @@ def forks_svg(db, engine):
 
     svg_lines = [
         f"<svg viewBox='{bounds}' xmlns='http://www.w3.org/2000/svg'>",
-        # TODO: <path>s connecting the branch nodes
-        # *[
-        #     f'<path d="M {bx+80} {by+12} L {fx+12} {fy+12}"/>'
-        #     for (bx, by), (fx, fy) in node_links],
         *[
-            f'<path d="M {bx+96} {by+12} C {bx+120} {by+12}, {fx-12} {fy+12}, {fx+4} {fy+12}"/>'
+            f'<path d="M {bx-40} {by+12} C {bx+12} {by+12}, {fx-12} {fy+12}, {fx+4} {fy+12}"/>'
             for (bx, by), (fx, fy) in node_links],
         *[
             "  " + "\n  ".join([
-                # TODO: variable width based on text width
-                f"<foreignObject x='{x}' y='{y}' width='256' height='32'>",
-                f"    <a class='node {style_for(branch)}' href='{site}/branches/{dev}/{branch}/'>{dev}.{branch}</a>",
+                f"<foreignObject x='{x}' y='{y}' width='{width_for(dev, branch)}' height='24'>",
+                f"    <a class='node {style_for(branch)}' href='{site}/branches/{dev}/{branch}/'>{branch}</a>",
                 "</foreignObject>"])
             for (dev, branch), (x, y) in nodes.items()],
         "</svg>"]
