@@ -1,10 +1,10 @@
 # Game Engines
 
 
- *Almost* all of the engines `bsp_tool` supports are descended from the [Quake Engine](quake.md).
+ *Almost*[^g3d] all of the engines `bsp_tool` supports are descended from the [Quake Engine](quake/index.md).
 
-It's surprisingly difficult to find a consistent name for different game engines.
-Definitions given here conflict with other sources.
+It's surprisingly difficult to find consistent names for the various game engines.
+Definitions given here *will* conflict with other sources.
 
 
 ## Family Tree
@@ -59,3 +59,6 @@ Definitions given here conflict with other sources.
     </foreignObject>
   </svg>
 </div>
+
+
+[^g3d]: the one exception being Genesis3D

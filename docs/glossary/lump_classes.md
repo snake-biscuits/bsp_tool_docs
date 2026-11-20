@@ -20,4 +20,4 @@ Complex lump structure, more advanced than a regular list.
 
 ## GameLump
 
-Used in the [Source Engine](../engines/source.md), functions as a `.bsp` within a `.bsp`
+Used in the [Source Engine](../engines/source/index.md), functions as a `.bsp` within a `.bsp`

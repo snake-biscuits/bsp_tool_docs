@@ -1,22 +1,25 @@
+import collections
+
 from . import utils
 
 
 def generate_all():
     db = utils.load_db("branch")
 
-    engines = db.execute("""
-        SELECT name FROM Engine
-        """).fetchall()
+    engines = db.execute("SELECT name FROM Engine").fetchall()
 
-    for (engine,) in engines:
-        # TODO: write svg as part of a full engine markdown page
-        print("=" * 30)
-        print(engine)
-        print("-" * 30)
-        print(forks_svg(db, engine))
+    with open("./docs/engines/svgs.md", "w") as outfile:
+        outfile.write("# Engine `.svg`s" + "\n\n")
+        for (engine,) in engines:
+            outfile.write(f"## {engine}" + "\n")
+            outfile.write('<div class="svg-wrapper">')
+            outfile.write(forks_svg(db, engine) + "\n\n")
+            outfile.write('</div>')
 
 
 def forks_svg(db, engine):
+    # TODO: mermaid output for debugging
+    # TODO: track engine of each branch collected
     forks = db.execute(f"""
         SELECT BD.name, BB.name, FD.name, FB.name
         FROM       BranchFork AS BF
@@ -28,68 +31,73 @@ def forks_svg(db, engine):
         WHERE E.name == '{engine}'
         """).fetchall()
 
-    nodes = {
-        (base_dev, base_branch): (0, 0)
-        for base_dev, base_branch, fork_dev, fork_branch in forks}
     # TODO: place each branch in 2d space
     # -- chronological flow from left to right
     # -- need to know which branch is first (can't be a fork)
+    nodes = dict()
+    node_forks = collections.defaultdict(set)
+    for base_dev, base_branch, fork_dev, fork_branch in forks:
+        base = (base_dev, base_branch)
+        fork = (fork_dev, fork_branch)
+        if base not in nodes:  # should only happen once!
+            x, y = 0, 0
+            nodes[base] = (x, y)
+        else:
+            x, y = nodes[base]
+        x += 128
+        y += 24 * len(node_forks[base])
+        # text_width = 8 * (len(base_dev) + 1 + len(base_branch))
+        # gap = text_width + 48
+        nodes[fork] = (x, y)
+        node_forks[base].add(fork)
 
-    # NOTE: chronological markers across the top would be neat
-    # -- would require looking up releases
-    # -- scripts = ["branch", "game", "release"]
-    # -- chronology = db.execute("""
-    # --     SELECT X.branch_name
-    # --     FROM (
-    # --         SELECT
-    # --             MIN(R.day)                  AS release_day,
-    # --             CONCAT(D.name, '.', B.name) AS branch_name
-    # --         FROM       ReleaseBranch AS RB
-    # --         INNER JOIN Release       AS  R ON R.rowid == RB.release
-    # --         INNER JOIN Branch        AS  B ON B.rowid == RB.branch
-    # --         INNER JOIN Developer     AS  D ON D.rowid == B.developer
-    # --         INNER JOIN Engine        AS  E ON E.rowid == B.engine
-    # --         WHERE E.name == 'Source'
-    # --         AND R.day LIKE '%-%-%'
-    # --         GROUP BY branch_name
-    # --     ) AS X
-    # --     ORDER BY X.release_day ASC
-    # --     """).fetchall()
+    if len(nodes) == 0:
+        branches = db.execute("""
+            SELECT D.name, B.name
+            FROM       Branch    AS B
+            INNER JOIN Developer AS D ON D.rowid == B.developer
+            INNER JOIN Engine    AS E ON E.rowid == B.engine""" + f"""
+            WHERE E.name == '{engine}'
+            """).fetchall()
+        if len(branches) == 0:
+            return "<!-- engine with no branches -->"
+        x, y = 0, 0
+        for dev, branch in branches:
+            nodes[(dev, branch)] = (x, y)
+            y += 24
 
-    styles = db.execute("""
-        SELECT CONCAT('.', B.name, ' { background-color: #', B.colour, '; }')
-        FROM Branch AS B
-        INNER JOIN Engine AS E ON B.engine == E.rowid""" + f"""
-        WHERE E.name == '{engine}'
-        """).fetchall()
-    styles = [x[0].replace("_", "-") for x in styles]
+    # construct svg
+
+    width = max(x for x, y in nodes.values()) + 128
+    height = max(y for x, y in nodes.values()) + 24
+    width = max(256, width)
+    height = max(64, height)
+    bounds = f"0 0 {width} {height}"
+
+    def style_for(branch):
+        return f"branch-{branch.replace('_', '-')}"
+
+    node_links = [
+        (nodes[base], nodes[fork])
+        for base in node_forks
+        for fork in node_forks[base]]
 
     site = "https://snake-biscuits.github.io/bsp_tool_docs"
 
-    # TODO: use lxml to generate xml
-    # -- might also be some library to help with .css
     svg_lines = [
-        "<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>",
-        "  <style>",
-        "    .branch {",
-        "      border-radius: 0.5rem;",
-        "      color: #EEE;",
-        "      display: inline-block;",
-        "      outline: 1px solid #EEE;",
-        "      overflow: auto;",
-        "      padding-left: 0.5rem;",
-        "      padding-right: 0.5rem;",
-        "    }",
-        "    a:visited { color: #E1E; }",
-        *[f"    {style}" for style in styles],
-        "  </style>",
+        f"<svg viewBox='{bounds}' xmlns='http://www.w3.org/2000/svg'>",
         # TODO: <path>s connecting the branch nodes
+        # *[
+        #     f'<path d="M {bx+80} {by+12} L {fx+12} {fy+12}"/>'
+        #     for (bx, by), (fx, fy) in node_links],
+        *[
+            f'<path d="M {bx+96} {by+12} C {bx+120} {by+12}, {fx-12} {fy+12}, {fx+4} {fy+12}"/>'
+            for (bx, by), (fx, fy) in node_links],
         *[
             "  " + "\n  ".join([
-                f"<foreignObject x='{x}' y='{y}' width='96' height='32'>",
-                f"  <div class='branch {branch}' xmlns='http://www.w3.org/1999/xhtml'>",
-                f"    <a href='{site}/branches/{dev}/{branch}/'>{dev}.{branch}</a>",
-                "  </div>",
+                # TODO: variable width based on text width
+                f"<foreignObject x='{x}' y='{y}' width='256' height='32'>",
+                f"    <a class='node {style_for(branch)}' href='{site}/branches/{dev}/{branch}/'>{dev}.{branch}</a>",
                 "</foreignObject>"])
             for (dev, branch), (x, y) in nodes.items()],
         "</svg>"]

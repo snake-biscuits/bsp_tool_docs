@@ -13,10 +13,12 @@
 
 .node {
   border-radius: 0.5rem;
-  background-color: #EA2;
+  background-color: #EAE;
   color: #EEE;
   display: inline-block;
   overflow: auto;
+  max-height: 1.75rem;
+  max-width: 200rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
@@ -30,30 +32,61 @@ a.node:visited { color: #748; }
 
 /* loosely similar to label colours on GitHub */
 /* branches */
-.branch-alien-swarm      { background-color: #5DF; }
-.branch-cso2             { background-color: #B0B; }
-.branch-cso2-2018        { background-color: #A0E; }
-.branch-dark-messiah-mp  { background-color: #5E0; }
-.branch-dark-messiah-sp  { background-color: #2B0; }
-.branch-infra            { background-color: #ACB; }
-.branch-left4dead        { background-color: #EA1; }
-.branch-left4dead2       { background-color: #3A3; }
-.branch-merubasu         { background-color: #C2A; }
-.branch-orange-box       { background-color: #D60; }
-.branch-orange-box-x360  { background-color: #D40; }
-.branch-outerlight       { background-color: #DA7; }
-.branch-sdk-2013         { background-color: #47B; }
-.branch-sdk-2013-x360    { background-color: #46A; }
-.branch-source           { background-color: #FA0; }
-.branch-source-filmmaker { background-color: #B72; }
-.branch-strata           { background-color: #C11; }
-.branch-vampire          { background-color: #F90; }
-.branch-vindictus        { background-color: #89B; }
-.branch-vindictus69      { background-color: #B80; }
-.branch-zeno-clash       { background-color: #422; }
-.branch-quake            { background-color: #821; }
-.branch-quake64          { background-color: #E71; }
-.branch-hexen2           { background-color: #A00; }
+.branch-alien-swarm                  { background-color: #5DF; }
+.branch-apex-legends                 { background-color: #BBB; }
+.branch-apex-legends50               { background-color: #88B; }
+.branch-apex-legends51               { background-color: #B8B; }
+.branch-apex-legends52               { background-color: #8B8; }
+.branch-blue-shift                   { background-color: #05C; }
+.branch-call-of-duty1                { background-color: #562; }
+.branch-call-of-duty1-demo           { background-color: #563; }
+.branch-call-of-duty2                { background-color: #9BE; }
+.branch-cso2                         { background-color: #B0B; }
+.branch-cso2-2018                    { background-color: #A0E; }
+.branch-daikatana                    { background-color: #B10; }
+.branch-dark-messiah-mp              { background-color: #5E0; }
+.branch-dark-messiah-sp              { background-color: #2B0; }
+.branch-fakk2                        { background-color: #52E; }
+.branch-genesis3d                    { background-color: #467; }
+.branch-goldsrc                      { background-color: #F91; }
+.branch-hexen2                       { background-color: #A00; }
+.branch-infra                        { background-color: #ACB; }
+.branch-left4dead                    { background-color: #EA1; }
+.branch-left4dead2                   { background-color: #3A3; }
+.branch-merubasu                     { background-color: #C2A; }
+.branch-modern-warfare               { background-color: #674; }
+.branch-mohaa                        { background-color: #564; }
+.branch-mohaa-bt                     { background-color: #754; }
+.branch-mohaa-demo                   { background-color: #675; }
+.branch-nightfire                    { background-color: #09C; }
+.branch-orange-box                   { background-color: #D60; }
+.branch-orange-box-x360              { background-color: #D40; }
+.branch-outerlight                   { background-color: #DA7; }
+.branch-qbism                        { background-color: #284; }
+.branch-qfusion                      { background-color: #757; }
+.branch-quake                        { background-color: #821; }
+.branch-quake2                       { background-color: #4A6; }
+.branch-quake3                       { background-color: #B00; }
+.branch-quake64                      { background-color: #E71; }
+.branch-remake-quake                 { background-color: #940; }
+.branch-remake-quake-old             { background-color: #A52; }
+.branch-sdk-2013                     { background-color: #47B; }
+.branch-sdk-2013-x360                { background-color: #46A; }
+.branch-sin                          { background-color: #165; }
+.branch-soldier-of-fortune           { background-color: #571; }
+.branch-soldier-of-fortune2          { background-color: #457; }
+.branch-source                       { background-color: #FA0; }
+.branch-source-filmmaker             { background-color: #B72; }
+.branch-star-trek-elite-force2       { background-color: #203; }
+.branch-star-trek-elite-force2-demo  { background-color: #213; }
+.branch-strata                       { background-color: #C11; }
+.branch-titanfall                    { background-color: #489; }
+.branch-titanfall-x360               { background-color: #498; }
+.branch-titanfall2                   { background-color: #7BC; }
+.branch-vampire                      { background-color: #F90; }
+.branch-vindictus                    { background-color: #89B; }
+.branch-vindictus69                  { background-color: #B80; }
+.branch-zeno-clash                   { background-color: #522; }
 
 /* engines */
 .engine-genesis3d { background-color: #467; }
