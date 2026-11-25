@@ -4,7 +4,7 @@ from . import utils
 
 
 def generate_all():
-    db = utils.load_db("branch")
+    db = utils.load_db("branch", "game", "release")
 
     engines = db.execute("SELECT name FROM Engine").fetchall()
 
@@ -31,7 +31,32 @@ def forks_svg(db, engine: str) -> str:
         WHERE E.name == '{engine}'
         """).fetchall()
 
-    # TODO: sort forks chronologically
+    branch_dates = db.execute(f"""
+        SELECT D.name, B.name, R.day
+        FROM       ReleaseBranch AS RB
+        INNER JOIN Branch        AS  B ON B.rowid == RB.branch
+        INNER JOIN Developer     AS  D ON D.rowid ==  B.developer
+        INNER JOIN Release       AS  R ON R.rowid == RB.release
+        WHERE R.day LIKE '%-%-%'
+        ORDER BY R.day ASC;
+        """).fetchall()
+
+    branch_dates = {
+        (developer, branch): sorted([
+            date
+            for d, b, date in branch_dates
+            if d == developer and b == branch])
+        for developer, branch, date in branch_dates}
+
+    def fork_chrono_key(fork) -> (int, int):
+        base_dev, base_branch, fork_dev, fork_branch = fork
+        base = (base_dev, base_branch)
+        fork = (fork_dev, fork_branch)
+        base_dates = branch_dates.get(base, ["zzz"])
+        fork_dates = branch_dates.get(fork, ["zzz"])
+        return base_dates[0], fork_dates[0]
+
+    forks = sorted(forks, key=fork_chrono_key)
 
     # arrange nodes
     # TODO: borrow column hints from timeline
@@ -40,6 +65,7 @@ def forks_svg(db, engine: str) -> str:
     for base_dev, base_branch, fork_dev, fork_branch in forks:
         base = (base_dev, base_branch)
         fork = (fork_dev, fork_branch)
+        # TODO: node x & width from branch_dates
         if base not in nodes:  # should only happen once!
             x, y = 0, 0
             nodes[base] = (x, y)
