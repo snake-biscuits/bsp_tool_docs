@@ -1,4 +1,5 @@
 import collections
+from pathlib import Path
 
 from . import utils
 
@@ -8,13 +9,16 @@ def generate_all():
 
     engines = db.execute("SELECT name FROM Engine").fetchall()
 
-    with open("./docs/engines/svgs.md", "w") as outfile:
-        outfile.write("# Engine `.svg`s" + "\n\n")
-        for (engine,) in engines:
-            outfile.write(f"## {engine}" + "\n")
-            outfile.write('<div class="svg-wrapper">')
-            outfile.write(forks_svg(db, engine) + "\n\n")
-            outfile.write('</div>')
+    for (engine,) in engines:
+        Path(f"./docs/engines/{engine}/").mkdir(exist_ok=True)
+        with open(f"./docs/engines/{engine}/index.md", "w") as outfile:
+            outfile.write(f"# {engine} Engine" + "\n")
+            outfile.write("## Branches\n")
+            outfile.write('<div class="svg-wrapper">' + "\n")
+            outfile.write(forks_svg(db, engine) + "\n")
+            outfile.write('</div>' + "\n\n")
+            outfile.write("## Games\n")
+            outfile.write("> TODO\n")
 
 
 def forks_svg(db, engine: str) -> str:

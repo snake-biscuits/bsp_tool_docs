@@ -30,7 +30,7 @@ INSERT INTO Engine(name) VALUES
 	('IW 3.0'),
 	('ReMakeQuake'),
 	('Source'),
-	('Titanfall'),
+	('ReSource'),
 	('Quake'),
 	('Quake 2');
 
@@ -90,6 +90,7 @@ INSERT INTO Branch(name, engine, developer, colour) VALUES
 	('sdk_2013_x360',10,16,'4466AA'),
 	('source',10,16,'FFAA00'),
 	('source_filmmaker',10,16,'BB7722'),
+	('source_xbox',10,16,'EE9922'),
 	('genesis3d',1,17,'446677');
 
 
